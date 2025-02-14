@@ -10,7 +10,7 @@ pipelines:
           plugin: builtin:postgres@latest
           settings:
             tables: employees
-            url: postgresql://meroxauser:meroxapass@localhost:5432@meroxadb
+            url: postgresql://meroxauser:meroxapass@pg-0:5432/meroxadb
         - id: kafka-destination
           type: destination
           plugin: builtin:kafka

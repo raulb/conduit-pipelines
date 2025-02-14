@@ -6,8 +6,6 @@ This repository will contain some Conduit Pipelines that will be used to easily 
 > Until > 0.13.2 is released (see PR), you'll need to build the Conduit image locally
 > `$ (conduitio/conduit) docker buildx build --platform linux/arm64 -t ghcr.io/conduitio/conduit:v0.13.1 --load .`
 
-Run `make help` to see actions available.
-
 ### Postgres -> Kafka
 
 

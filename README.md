@@ -31,6 +31,11 @@ meroxadb=# SELECT pg_size_pretty(pg_total_relation_size('employees')) AS size;
 (1 row)
 ```
 
+**Results**
+
+- Conduit: 1,108MB/s 
+- Connect: TODO
+
 ##### Clean up
 
 ```bash

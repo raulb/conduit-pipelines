@@ -1,6 +1,6 @@
 version: "2.2"
 pipelines:
-    - id: postgrse-to-kafka
+    - id: postgres-to-kafka
       status: running
       name: "postgres-to-kafka"
       description: Postgres to Kafka
@@ -9,9 +9,8 @@ pipelines:
           type: source
           plugin: builtin:postgres@latest
           settings:
-            collection: employees
-            db: meroxadb
-            uri: postgresql://meroxauser:meroxapass@localhost:5432
+            tables: employees
+            url: postgresql://meroxauser:meroxapass@localhost:5432@meroxadb
         - id: kafka-destination
           type: destination
           plugin: builtin:kafka

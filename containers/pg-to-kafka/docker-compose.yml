@@ -10,6 +10,7 @@ services:
       POSTGRES_DB: meroxadb
     volumes:
       - "./data/pg:/var/lib/postgresql/data"
+      - "./init.sql:/docker-entrypoint-initdb.d/init.sql"
     healthcheck:
       test: ["CMD", "pg_isready", "-q", "-d", "meroxadb", "-U", "meroxauser"]
       interval: 10s
@@ -57,10 +58,10 @@ services:
       - broker
       - pg-0
     volumes:
-      - './pg-to-kafka:/app/pipelines'
+      - './pipelines:/app/pipelines'
     ports:
       - '8081:8080'
-    command: ["conduit", "run", "--pipelines.path", "/app/pipelines"]
+    command: ["./conduit", "run", "--pipelines.path", "/app/pipelines"]
     platform: linux/arm64
 
   control-center:

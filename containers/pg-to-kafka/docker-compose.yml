@@ -54,9 +54,6 @@ services:
   conduit:
     image: 'ghcr.io/conduitio/conduit:v0.13.1'
     container_name: conduit
-    depends_on:
-      - broker
-      - pg-0
     volumes:
       - './pipelines:/app/pipelines'
     ports:

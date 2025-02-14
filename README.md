@@ -4,43 +4,25 @@ This repository will contain some Conduit Pipelines that will be used to easily 
 
 > [!NOTE]  
 > Until > 0.13.2 is released (see PR), you'll need to build the Conduit image locally
-> `$ (conduitio/conduit) docker buildx build --platform linux/arm64 -t ghcr.io/conduitio/conduit:v0.13.1 --load .`
+> `$ (conduitio/conduit) docker buildx build --platform linux/arm64 -t ghcr.io/conduitio/conduit:v0.13.1 --load ~/code/conduitio/conduit`
 
 ### Postgres -> Kafka
 
 
-1. Setup containers
+1. Start PostgresQL and Kafka `docker-compose -f ./containers/pg-to-kafka/docker-compose.yml up -d pg-0 broker control-center`
+1. Insert data `make insert-data`
+1. Start Conduit `docker-compose -f ./containers/pg-to-kafka/docker-compose.yml up -d conduit`
+1. Access control center
 
-```bash
-make setup
-```
-
-2. Create schema
-
-```bash
-make insert-data
-```
-
-If this doesn't work, ensure schema was successfully created:
-
-```bash
-docker exec -it pg-0 psql -U meroxauser -d meroxadb
-psql (16.4 (Debian 16.4-1.pgdg110+2))
-Type "help" for help.
-
-meroxadb=# \d
-                 List of relations
- Schema |       Name       |   Type   |   Owner    
---------+------------------+----------+------------
- public | employees        | table    | meroxauser
- public | employees_id_seq | sequence | meroxauser
-
- ```
- 
- 3. Access control center
 
 ```bash
 open http://localhost:9021/clusters
+```
+
+##### Clean up
+
+```bash
+make clean && rm -Rf containers/pg-to-kafka/data/
 ```
 
 ### Kafka -> Snowflake

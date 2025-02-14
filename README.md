@@ -9,9 +9,9 @@ This repository will contain some Conduit Pipelines that will be used to easily 
 ### Postgres -> Kafka
 
 
-1. Start PostgresQL and Kafka `docker-compose -f ./containers/pg-to-kafka/docker-compose.yml up -d pg-0 broker control-center`
+1. Start PostgresQL and Kafka `docker-compose -f ./pg-to-kafka/docker-compose.yml up -d pg-0 broker control-center`
 1. Insert data `make insert-data`
-1. Start Conduit `docker buildx build --platform linux/arm64 -t ghcr.io/conduitio/conduit:v0.13.1 --load ~/code/conduitio/conduit && docker-compose -f ./containers/pg-to-kafka/docker-compose.yml up -d conduit`
+1. Start Conduit `docker buildx build --platform linux/arm64 -t ghcr.io/conduitio/conduit:v0.13.1 --load ~/code/conduitio/conduit && docker-compose -f ./pg-to-kafka/docker-compose.yml up -d conduit`
 1. Access control center
 
 
@@ -34,7 +34,7 @@ meroxadb=# SELECT pg_size_pretty(pg_total_relation_size('employees')) AS size;
 ##### Clean up
 
 ```bash
-make clean && rm -Rf containers/pg-to-kafka/data/
+make clean && rm -Rf pg-to-kafka/data/
 ```
 
 ### Kafka -> Snowflake

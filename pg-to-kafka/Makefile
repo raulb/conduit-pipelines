@@ -1,4 +1,4 @@
-COMPOSE_FILE = pg-to-kafka/docker-compose.yml
+COMPOSE_FILE = docker-compose.yml
 CONDUIT_PATH=~/code/conduitio/conduit
 
 .PHONY: setup
@@ -20,4 +20,4 @@ connectkafka:
 
 .PHONY: insert-data
 insert-data:
-	./pg-to-kafka/insert-data.sh 
+	./insert-data.sh 

@@ -56,7 +56,7 @@ pipelines:
           # Host for the snowflake connection
           # Type: string
           # Required: yes
-          snowflake.host: "ybrnvos-rl06145.snowflakecomputing.com"
+          snowflake.host: ${SNOWFLAKE_HOST}
           # Prefix to append to update_at , deleted_at, create_at at destination
           # table
           # Type: string
@@ -65,7 +65,7 @@ pipelines:
           # Password for the snowflake connection
           # Type: string
           # Required: yes
-          snowflake.password: "qT74pGT4HXigoPMsm2qM"
+          snowflake.password: ${SNOWFLAKE_PASSWORD}
           # Port for the snowflake connection
           # Type: int
           # Required: yes

@@ -15,7 +15,7 @@ batches=5
 
 # Function to insert a batch of records
 insert_batch() {
-  docker exec -i pg-0 psql -U meroxauser -d meroxadb -c "
+  docker exec -i source-postgres psql -U meroxauser -d meroxadb -c "
   INSERT INTO employees (name, full_time, updated_at)
   SELECT 'John Doe', true, NOW()
   FROM generate_series(1, $batch_size);

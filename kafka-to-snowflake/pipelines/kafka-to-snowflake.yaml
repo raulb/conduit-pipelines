@@ -86,7 +86,7 @@ pipelines:
           # Table name.
           # Type: string
           # Required: yes
-          snowflake.table: "my-table"
+          snowflake.table: "dest-table"
           # Username for the snowflake connection
           # Type: string
           # Required: yes

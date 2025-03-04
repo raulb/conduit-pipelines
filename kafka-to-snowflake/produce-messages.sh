@@ -15,7 +15,6 @@ batches=1
 
 topic="source-topic" 
 
-
 # Produce a batch of records similar to this.
 # NOTE: is one of the records that the Kafka destination would receive from Postgres.
 # {

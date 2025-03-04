@@ -1,5 +1,4 @@
 COMPOSE_FILE = docker-compose.yml
-CONDUIT_PATH=~/code/conduitio/conduit
 
 .PHONY: setup
 setup:

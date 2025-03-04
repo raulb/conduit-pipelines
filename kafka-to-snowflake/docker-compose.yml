@@ -1,8 +1,8 @@
 services:
-  broker:
+  source-kafka:
     image: confluentinc/cp-server:7.8.1
     hostname: broker
-    container_name: broker
+    container_name: source-kafka
     ports:
       - "9092:9092"
       - "9101:9101"
@@ -33,9 +33,9 @@ services:
       CONFLUENT_METRICS_TOPIC_REPLICAS: 1
       CLUSTER_ID: 'MkU3OEVBNTcwNTJENDM2Qk'
 
-  conduit:
+  conduit-with-snowflake:
     image: 'ghcr.io/raulb/custom-conduit:latest'
-    container_name: conduit
+    container_name: conduit-with-snowflake
     volumes:
       - './pipelines:/app/pipelines'
     ports:

@@ -1,0 +1,99 @@
+version: "2.2"
+pipelines:
+  - id: kafka-to-snowflake
+    status: running
+    name: "kafka-to-snowflake"
+    processors:
+      - id: example
+        plugin: "field.set"
+        settings:
+          # Field is the target field that will be set. Note that it is not
+          # allowed to set the `.Position` field.
+          # For more information about the format, see [Referencing
+          # fields](https://conduit.io/docs/using/processors/referencing-fields).
+          # Type: string
+          field: .Key
+          value: '{"id":"{{ .Payload.After.id }}"}'
+      - id: parsing
+        plugin: "json.decode"
+        settings:
+          # Field is a reference to the target field. Only fields that are under
+          # `.Key` and `.Payload` can be decoded.
+          # For more information about the format, see [Referencing
+          # fields](https://conduit.io/docs/using/processors/referencing-fields).
+          # Type: string
+          field: .Key
+          # Whether to decode the record key using its corresponding schema from
+          # the schema registry.
+          # Type: bool
+    connectors:
+      - id: example
+        type: source
+        plugin: generator
+        settings:
+          # global settings
+          rate: 10
+          # collection "users"
+          collections.users.format.type: structured
+          collections.users.format.options.id: int
+          collections.users.format.options.name: string
+          collections.users.operations: create
+
+      - id: snowflake
+        type: destination
+        plugin: "snowflake"
+        settings:
+           # Required: yes
+          snowflake.compression: "zstd"
+          # Database for the snowflake connection
+          # Type: string
+          # Required: yes
+          snowflake.database: "TEST"
+          # Data type of file we upload and copy data from to snowflake
+          # Type: string
+          # Required: yes
+          snowflake.format: "csv"
+          # Host for the snowflake connection
+          # Type: string
+          # Required: yes
+          snowflake.host: "ybrnvos-rl06145.snowflakecomputing.com"
+          # Prefix to append to update_at , deleted_at, create_at at destination
+          # table
+          # Type: string
+          # Required: yes
+          snowflake.namingPrefix: "meroxa"
+          # Password for the snowflake connection
+          # Type: string
+          # Required: yes
+          snowflake.password: "qT74pGT4HXigoPMsm2qM"
+          # Port for the snowflake connection
+          # Type: int
+          # Required: yes
+          snowflake.port: "0"
+          # Primary key of the source table
+          # Type: string
+          # Required: yes
+          snowflake.primaryKey: "id"
+          # Schema for the snowflake connection
+          # Type: string
+          # Required: yes
+          snowflake.schema: "public"
+          # Snowflake Stage to use for uploading files before merging into
+          # destination table.
+          # Type: string
+          # Required: yes
+          snowflake.stage: "stage"
+          # Table name.
+          # Type: string
+          # Required: yes
+          snowflake.table: "my-table"
+          # Username for the snowflake connection
+          # Type: string
+          # Required: yes
+          snowflake.username: "raul"
+          # Warehouse for the snowflake connection
+          # Type: string
+          # Required: yes
+          snowflake.warehouse: "COMPUTE_WH"
+
+        

@@ -1,7 +1,7 @@
 services:
-  pg-0:
+  source-postgres:
     image: debezium/postgres:16
-    container_name: pg-0
+    container_name: source-postgres
     ports:
       - "5432:5432"
     environment:
@@ -17,10 +17,10 @@ services:
       timeout: 30s
       retries: 5
 
-  broker:
+  destination-kafka:
     image: confluentinc/cp-server:7.8.1
     hostname: broker
-    container_name: broker
+    container_name: destination-kafka
     ports:
       - "9092:9092"
       - "9101:9101"
@@ -52,7 +52,7 @@ services:
       CLUSTER_ID: 'MkU3OEVBNTcwNTJENDM2Qk'
 
   conduit:
-    image: 'ghcr.io/conduitio/conduit:v0.13.1'
+    image: 'ghcr.io/conduitio/conduit:v0.13.2'
     container_name: conduit
     volumes:
       - './pipelines:/app/pipelines'
@@ -61,12 +61,12 @@ services:
     command: ["./conduit", "run", "--pipelines.path", "/app/pipelines"]
     platform: linux/arm64
 
-  control-center:
+  destination-control-center:
     image: confluentinc/cp-enterprise-control-center:7.8.1
     hostname: control-center
     container_name: control-center
     depends_on:
-      - broker
+      - destination-kafka
     ports:
       - "9021:9021"
     environment:

@@ -3,7 +3,6 @@ CONDUIT_PATH=~/code/conduitio/conduit
 
 .PHONY: setup
 setup:
-	docker buildx build --platform linux/arm64 -t ghcr.io/conduitio/conduit:v0.13.1 --load $(CONDUIT_PATH)
 	docker-compose -f $(COMPOSE_FILE) up -d
 
 .PHONY: clean
@@ -12,11 +11,11 @@ clean:
 
 .PHONY: connectpg
 connectpg:
-	docker exec -it pg-0 psql -U meroxauser -d meroxadb
+	docker exec -it source-postgres psql -U meroxauser -d meroxadb
 
 .PHONY: connectkafka
 connectkafka:
-	docker exec -it broker /bin/sh
+	docker exec -it destination-kafka /bin/sh
 
 .PHONY: insert-data
 insert-data:

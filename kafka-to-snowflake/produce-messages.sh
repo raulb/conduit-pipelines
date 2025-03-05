@@ -29,7 +29,7 @@ produce_batch() {
     id=$(( (i - 1) * batch_size + j ))
     updated_at=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
     echo "{\"full_time\": true, \"id\": $id, \"name\": \"John Doe\", \"updated_at\": \"$updated_at\"}"
-  done | docker exec -i source-kafka kafka-console-producer.sh --broker-list localhost:9092 --topic "$topic"
+  done | docker exec -i source-kafka /usr/bin/kafka-console-producer --broker-list broker:29092 --topic "$topic"
 }
 
 start_time=$(date +%s)

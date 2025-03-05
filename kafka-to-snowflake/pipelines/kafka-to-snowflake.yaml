@@ -3,42 +3,86 @@ pipelines:
   - id: kafka-to-snowflake
     status: running
     name: "kafka-to-snowflake"
-    processors:
-      - id: example
-        plugin: "field.set"
-        settings:
-          # Field is the target field that will be set. Note that it is not
-          # allowed to set the `.Position` field.
-          # For more information about the format, see [Referencing
-          # fields](https://conduit.io/docs/using/processors/referencing-fields).
-          # Type: string
-          field: .Key
-          value: '{"id":"{{ .Payload.After.id }}"}'
-      - id: parsing
-        plugin: "json.decode"
-        settings:
-          # Field is a reference to the target field. Only fields that are under
-          # `.Key` and `.Payload` can be decoded.
-          # For more information about the format, see [Referencing
-          # fields](https://conduit.io/docs/using/processors/referencing-fields).
-          # Type: string
-          field: .Key
-          # Whether to decode the record key using its corresponding schema from
-          # the schema registry.
-          # Type: bool
     connectors:
-      - id: example
+      - id: kafka
         type: source
-        plugin: generator
+        plugin: kafka
         settings:
-          # global settings
-          rate: 10
-          # collection "users"
-          collections.users.format.type: structured
-          collections.users.format.options.id: int
-          collections.users.format.options.name: string
-          collections.users.operations: create
-
+          # Servers is a list of Kafka bootstrap servers, which will be used to
+          # discover all the servers in a cluster.
+          # Type: string
+          # Required: yes
+          servers: "broker:29092"
+          # Topics is a comma separated list of Kafka topics to read from.
+          # Type: string
+          # Required: yes
+          topics: "source-topic"
+          # ClientID is a unique identifier for client connections established
+          # by this connector.
+          # Type: string
+          # Required: no
+          clientID: "conduit-connector-kafka"
+          # ReadFromBeginning determines from whence the consumer group should
+          # begin consuming when it finds a partition without a committed
+          # offset. If this options is set to true it will start with the first
+          # message in that partition.
+          # Type: bool
+          # Required: no
+          readFromBeginning: "false"
+          # RetryGroupJoinErrors determines whether the connector will
+          # continually retry on group join errors.
+          # Type: bool
+          # Required: no
+          retryGroupJoinErrors: "true"
+          # TLSEnabled defines whether TLS is needed to communicate with the
+          # Kafka cluster.
+          # Type: bool
+          # Required: no
+          tls.enabled: "false"
+          # Maximum delay before an incomplete batch is read from the source.
+          # Type: duration
+          # Required: no
+          sdk.batch.delay: "0"
+          # Maximum size of batch before it gets read from the source.
+          # Type: int
+          # Required: no
+          sdk.batch.size: "10"
+          # Specifies whether to use a schema context name. If set to false, no
+          # schema context name will be used, and schemas will be saved with the
+          # subject name specified in the connector (not safe because of name
+          # conflicts).
+          # Type: bool
+          # Required: no
+          sdk.schema.context.enabled: "true"
+          # Schema context name to be used. Used as a prefix for all schema
+          # subject names. If empty, defaults to the connector ID.
+          # Type: string
+          # Required: no
+          sdk.schema.context.name: ""
+          # Whether to extract and encode the record key with a schema.
+          # Type: bool
+          # Required: no
+          sdk.schema.extract.key.enabled: "false"
+          # The subject of the key schema. If the record metadata contains the
+          # field "opencdc.collection" it is prepended to the subject name and
+          # separated with a dot.
+          # Type: string
+          # Required: no
+          sdk.schema.extract.key.subject: "key"
+          # Whether to extract and encode the record payload with a schema.
+          # Type: bool
+          # Required: no
+          sdk.schema.extract.payload.enabled: "false"
+          # The subject of the payload schema. If the record metadata contains
+          # the field "opencdc.collection" it is prepended to the subject name
+          # and separated with a dot.
+          # Type: string
+          # Required: no
+          sdk.schema.extract.payload.subject: "payload"
+          # The type of the payload schema.
+          # Type: string
+          # Required: no
+          sdk.schema.extract.type: "avro"
       - id: snowflake
         type: destination
         plugin: "snowflake"

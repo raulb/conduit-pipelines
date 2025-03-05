@@ -1,3 +1,5 @@
+include .env
+
 COMPOSE_FILE = docker-compose.yml
 TOPIC=source-topic
 BROKER=broker:29092
@@ -35,3 +37,15 @@ reset-topics:
 	docker exec -it source-kafka /bin/sh -c "\
 	  /usr/bin/kafka-topics --list --bootstrap-server $(BROKER) | \
 	  xargs -I {} kafka-topics --delete --topic {} --bootstrap-server $(BROKER)"
+
+.PHONY: conduit-logs
+conduit-logs:
+	docker logs -f conduit-with-snowflake
+
+.PHONY: open-snowflake
+open-snowflake:
+	open -u https://$(SNOWFLAKE_HOST)
+
+.PHONY: produce-messages
+produce-messages:
+	./produce-messages.sh 

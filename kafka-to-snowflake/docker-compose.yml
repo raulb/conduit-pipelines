@@ -35,6 +35,8 @@ services:
 
   conduit-with-snowflake:
     image: 'ghcr.io/raulb/custom-conduit:latest'
+    env_file:
+      - .env
     container_name: conduit-with-snowflake
     volumes:
       - './pipelines:/app/pipelines'

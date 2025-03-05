@@ -95,9 +95,6 @@ pipelines:
           # Type: string
           # Required: no
           sdk.schema.context.name: ""
-        
-          
-          
           # Whether to extract and encode the record key with a schema.
           # Type: bool
           # Required: no

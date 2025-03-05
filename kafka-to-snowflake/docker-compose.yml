@@ -1,26 +1,8 @@
 services:
-  source-postgres:
-    image: debezium/postgres:16
-    container_name: source-postgres
-    ports:
-      - "5432:5432"
-    environment:
-      POSTGRES_USER: meroxauser
-      POSTGRES_PASSWORD: meroxapass
-      POSTGRES_DB: meroxadb
-    volumes:
-      - "./data/pg:/var/lib/postgresql/data"
-      - "./init.sql:/docker-entrypoint-initdb.d/init.sql"
-    healthcheck:
-      test: ["CMD", "pg_isready", "-q", "-d", "meroxadb", "-U", "meroxauser"]
-      interval: 10s
-      timeout: 30s
-      retries: 5
-
-  destination-kafka:
+  source-kafka:
     image: confluentinc/cp-server:7.8.1
     hostname: broker
-    container_name: destination-kafka
+    container_name: source-kafka
     ports:
       - "9092:9092"
       - "9101:9101"
@@ -51,9 +33,11 @@ services:
       CONFLUENT_METRICS_TOPIC_REPLICAS: 1
       CLUSTER_ID: 'MkU3OEVBNTcwNTJENDM2Qk'
 
-  conduit:
-    image: 'ghcr.io/conduitio/conduit:v0.13.2'
-    container_name: conduit
+  conduit-with-snowflake:
+    image: 'ghcr.io/raulb/custom-conduit:latest'
+    env_file:
+      - .env
+    container_name: conduit-with-snowflake
     volumes:
       - './pipelines:/app/pipelines'
     ports:
@@ -61,25 +45,6 @@ services:
     command: ["./conduit", "run", "--pipelines.path", "/app/pipelines"]
     platform: linux/arm64
 
-  destination-control-center:
-    image: confluentinc/cp-enterprise-control-center:7.8.1
-    hostname: control-center
-    container_name: control-center
-    depends_on:
-      - destination-kafka
-    ports:
-      - "9021:9021"
-    environment:
-      CONTROL_CENTER_BOOTSTRAP_SERVERS: 'broker:29092'
-      CONTROL_CENTER_CONNECT_CONNECT-DEFAULT_CLUSTER: 'connect:8083'
-      CONTROL_CENTER_CONNECT_HEALTHCHECK_ENDPOINT: '/connectors'
-      CONTROL_CENTER_REPLICATION_FACTOR: 1
-      CONTROL_CENTER_INTERNAL_TOPICS_PARTITIONS: 1
-      CONTROL_CENTER_MONITORING_INTERCEPTOR_TOPIC_PARTITIONS: 1
-      CONFLUENT_METRICS_TOPIC_REPLICATION: 1
-      PORT: 9021
-
 volumes:
-  pg_data:
   kafka_data:
   conduit_data:

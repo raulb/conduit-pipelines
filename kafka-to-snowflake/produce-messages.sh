@@ -7,11 +7,8 @@ cleanup() {
 
 trap cleanup SIGINT
 
-# batch_size=80000
-# batches=5
-
-batch_size=10
-batches=1
+batch_size=80000
+batches=5
 
 topic="source-topic" 
 

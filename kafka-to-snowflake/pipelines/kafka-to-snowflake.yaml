@@ -3,6 +3,42 @@ pipelines:
   - id: kafka-to-snowflake
     status: running
     name: "kafka-to-snowflake"
+    processors:
+      - id: parsingpayload
+        plugin: "json.decode"
+        settings:
+          # Field is a reference to the target field. Only fields that are under
+          # `.Key` and `.Payload` can be decoded.
+          # For more information about the format, see [Referencing
+          # fields](https://conduit.io/docs/using/processors/referencing-fields).
+          # Type: string
+          field: .Payload.After
+          # Whether to decode the record key using its corresponding schema from
+          # the schema registry.
+          # Type: bool
+      - id: fieldset
+        plugin: "field.set"
+        settings:
+          # Field is the target field that will be set. Note that it is not
+          # allowed to set the `.Position` field.
+          # For more information about the format, see [Referencing
+          # fields](https://conduit.io/docs/using/processors/referencing-fields).
+          # Type: string
+          field: .Key
+          value: '{"id":"{{ .Payload.After.id }}"}'
+      - id: parsingkey
+        plugin: "json.decode"
+        settings:
+          # Field is a reference to the target field. Only fields that are under
+          # `.Key` and `.Payload` can be decoded.
+          # For more information about the format, see [Referencing
+          # fields](https://conduit.io/docs/using/processors/referencing-fields).
+          # Type: string
+          field: .Key
+          # Whether to decode the record key using its corresponding schema from
+          # the schema registry.
+          # Type: bool
+    
     connectors:
       - id: kafka
         type: source
@@ -46,7 +82,7 @@ pipelines:
           # Maximum size of batch before it gets read from the source.
           # Type: int
           # Required: no
-          sdk.batch.size: "10"
+          sdk.batch.size: "80000"
           # Specifies whether to use a schema context name. If set to false, no
           # schema context name will be used, and schemas will be saved with the
           # subject name specified in the connector (not safe because of name
@@ -59,6 +95,9 @@ pipelines:
           # Type: string
           # Required: no
           sdk.schema.context.name: ""
+        
+          
+          
           # Whether to extract and encode the record key with a schema.
           # Type: bool
           # Required: no
@@ -130,7 +169,7 @@ pipelines:
           # Table name.
           # Type: string
           # Required: yes
-          snowflake.table: "dest-table"
+          snowflake.table: "desttable"
           # Username for the snowflake connection
           # Type: string
           # Required: yes
@@ -139,5 +178,7 @@ pipelines:
           # Type: string
           # Required: yes
           snowflake.warehouse: "COMPUTE_WH"
+
+          sdk.batch.size: "80000"
 
         

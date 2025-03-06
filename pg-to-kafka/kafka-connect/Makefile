@@ -12,6 +12,10 @@ clean:
 deploy-source-connector:
 	curl -X POST -H "Content-Type: application/json" --data @source-postgres.json http://localhost:8083/connectors
 
+.PHONY: kafka-connect-logs
+kafka-connect-logs:
+	docker logs -f kafka-connect
+
 .PHONY: insert-data
 insert-data:
 	../insert-data.sh 

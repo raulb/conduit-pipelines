@@ -50,6 +50,7 @@ services:
       CONFLUENT_METRICS_REPORTER_BOOTSTRAP_SERVERS: localhost:9092
       CONFLUENT_METRICS_TOPIC_REPLICAS: 1
       CLUSTER_ID: 'MkU3OEVBNTcwNTJENDM2Qk'
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'true'
 
   conduit:
     image: 'ghcr.io/conduitio/conduit:v0.13.2'

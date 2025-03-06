@@ -46,6 +46,15 @@ make clean && rm -Rf pg-to-kafka/data/
 
 ### Kafka -> Snowflake
 
-TODO
+> [!NOTE]  
+> All commands would be executed from `./kafka-to-snowflake`.
+>
+> In order to execute these tests, a [Snowflake account is required](https://signup.snowflake.com/) and provide those credentials in .env
 
-
+1. `cp .env.sample .env`
+1. Update credentials
+1. `make setup`
+1. To monitor execution on Conduit: `make conduit-logs`
+1. Create topic (this is optional as topic will be created automatically): `make create-topic`
+1. Produce messages: `make produce-messages`
+1. Access Snowflake instance.

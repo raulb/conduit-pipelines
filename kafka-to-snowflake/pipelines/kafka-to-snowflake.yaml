@@ -170,7 +170,7 @@ pipelines:
           # Username for the snowflake connection
           # Type: string
           # Required: yes
-          snowflake.username: "raul"
+          snowflake.username: ${SNOWFLAKE_USERNAME}
           # Warehouse for the snowflake connection
           # Type: string
           # Required: yes

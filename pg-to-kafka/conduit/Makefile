@@ -1,4 +1,4 @@
-COMPOSE_FILE = docker-compose.yml
+COMPOSE_FILE = compose.yml
 
 .PHONY: setup
 setup:
@@ -18,4 +18,4 @@ connectkafka:
 
 .PHONY: insert-data
 insert-data:
-	./insert-data.sh 
+	../insert-data.sh 

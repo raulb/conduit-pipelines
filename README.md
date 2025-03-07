@@ -1,25 +1,8 @@
-## Conduit Pipelines
+# Conduit Pipelines
 
 This repository will contain some Conduit Pipelines that will be used to easily test its performance.
 
-> [!NOTE]  
-> Until > 0.13.2 is released (see PR), you'll need to build the Conduit image locally
-> `$ (conduitio/conduit) docker buildx build --platform linux/arm64 -t ghcr.io/conduitio/conduit:v0.13.1 --load ~/code/conduitio/conduit`
-
-### Postgres -> Kafka
-
-> [!NOTE]  
-> All commands would be executed from `./pg-to-kafka`.
-
-1. Start PostgresQL and Kafka `docker-compose -f ./pg-to-kafka/docker-compose.yml up -d pg-0 broker control-center`
-1. Insert data `make insert-data`
-1. Start Conduit `docker-compose -f ./pg-to-kafka/docker-compose.yml up -d conduit`
-1. Access control center
-
-
-```bash
-open http://localhost:9021/clusters
-```
+## Postgres -> Kafka
 
 **Test data**
 
@@ -33,19 +16,62 @@ meroxadb=# SELECT pg_size_pretty(pg_total_relation_size('employees')) AS size;
 (1 row)
 ```
 
-**Results**
+### Conduit
 
-- Conduit: (CDC) 1,108MB/s 
-- Connect: TODO
+> [!NOTE]  
+> All commands would be executed from `./pg-to-kafka/conduit`.
 
-##### Clean up
+#### Snapshot
 
-```bash
-make clean && rm -Rf pg-to-kafka/data/
-```
+1. Start everything but Conduit: `make setup`
+1. Insert data `make insert-data`
+1. Start Conduit `make start-conduit`
+1. Access control center: `make open-control-center`
 
-### Kafka -> Snowflake
+**Results:**
 
-TODO
+#### CDC
+
+1. Start everything but Conduit `make setup`
+1. Start Conduit `make start-conduit`
+1. Insert data `make insert-data`
+1. Access control center: `make open-control-center`
+
+### Kafka Connect
+
+> [!NOTE]  
+> All commands would be executed from `./pg-to-kafka/kafka-connect`.
 
 
+#### Snapshot
+
+1. `make setup`
+1. Insert data: `make insert-data`
+1. Deploy connector: `make deploy-source-connector`
+1. Access control center: `make open-control-center`
+
+**Results:**
+
+#### CDC
+
+1. `make setup`
+1. Deploy connector: `make deploy-source-connector`
+1. Insert data: `make insert-data`
+1. Access control center: `make open-control-center`
+
+**Results:**
+
+## Kafka -> Snowflake
+
+> [!NOTE]  
+> All commands would be executed from `./kafka-to-snowflake`.
+>
+> In order to execute these tests, a [Snowflake account is required](https://signup.snowflake.com/) and provide those credentials in .env
+
+1. `cp .env.sample .env`
+1. Update credentials
+1. `make setup`
+1. To monitor execution on Conduit: `make conduit-logs`
+1. Create topic (this is optional as topic will be created automatically): `make create-topic`
+1. Produce messages: `make produce-messages`
+1. Access Snowflake instance.

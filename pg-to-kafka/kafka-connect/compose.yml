@@ -10,7 +10,7 @@ services:
       POSTGRES_DB: meroxadb
     volumes:
       - "./data/pg:/var/lib/postgresql/data"
-      - "./init.sql:/docker-entrypoint-initdb.d/init.sql"
+      - "../init.sql:/docker-entrypoint-initdb.d/init.sql"
     healthcheck:
       test: ["CMD", "pg_isready", "-q", "-d", "meroxadb", "-U", "meroxauser"]
       interval: 10s
@@ -51,15 +51,35 @@ services:
       CONFLUENT_METRICS_TOPIC_REPLICAS: 1
       CLUSTER_ID: 'MkU3OEVBNTcwNTJENDM2Qk'
 
-  conduit:
-    image: 'ghcr.io/conduitio/conduit:v0.13.2'
-    container_name: conduit
-    volumes:
-      - './pipelines:/app/pipelines'
+  kafka-connect:
+    image: confluentinc/cp-kafka-connect:7.8.1
+    container_name: kafka-connect
     ports:
-      - '8081:8080'
-    command: ["./conduit", "run", "--pipelines.path", "/app/pipelines"]
-    platform: linux/arm64
+      - "8083:8083"
+    environment:
+      CONNECT_BOOTSTRAP_SERVERS: "broker:29092"
+      CONNECT_REST_ADVERTISED_HOST_NAME: kafka-connect
+      CONNECT_REST_PORT: 8083
+      CONNECT_GROUP_ID: connect-cluster-group
+      CONNECT_CONFIG_STORAGE_TOPIC: docker-connect-configs
+      CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR: 1
+      CONNECT_OFFSET_FLUSH_INTERVAL_MS: 10000
+      CONNECT_OFFSET_STORAGE_TOPIC: docker-connect-offsets
+      CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: 1
+      CONNECT_STATUS_STORAGE_TOPIC: docker-connect-status
+      CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: 1
+      CONNECT_PLUGIN_PATH: "/usr/share/java,/usr/share/confluent-hub-components"
+      CONNECT_CONNECTIONS_MAX_IDLE_MS: 180000
+      CONNECT_METADATA_MAX_AGE_MS: 180000
+      CONNECT_KEY_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
+      CONNECT_VALUE_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
+      CONNECT_LOG4J_LOGGERS: org.apache.zookeeper=ERROR,org.I0Itec.zkclient=ERROR,org.reflections=ERROR
+    volumes:
+      - ./scripts/:/scripts/
+    user: root
+    command: ["bash", "/scripts/setup.sh"]
+    # depends_on:
+    #   - destination-kafka
 
   destination-control-center:
     image: confluentinc/cp-enterprise-control-center:7.8.1
@@ -71,7 +91,7 @@ services:
       - "9021:9021"
     environment:
       CONTROL_CENTER_BOOTSTRAP_SERVERS: 'broker:29092'
-      CONTROL_CENTER_CONNECT_CONNECT-DEFAULT_CLUSTER: 'connect:8083'
+      CONTROL_CENTER_CONNECT_CONNECT-DEFAULT_CLUSTER: 'kafka-connect:8083'
       CONTROL_CENTER_CONNECT_HEALTHCHECK_ENDPOINT: '/connectors'
       CONTROL_CENTER_REPLICATION_FACTOR: 1
       CONTROL_CENTER_INTERNAL_TOPICS_PARTITIONS: 1
@@ -82,4 +102,3 @@ services:
 volumes:
   pg_data:
   kafka_data:
-  conduit_data:

@@ -1,6 +1,6 @@
 include .env
 
-COMPOSE_FILE = docker-compose.yml
+COMPOSE_FILE = compose.yml
 TOPIC=source-topic
 BROKER=broker:29092
 

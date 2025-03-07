@@ -6,7 +6,11 @@ BROKER=broker:29092
 
 .PHONY: setup
 setup:
-	docker-compose -f $(COMPOSE_FILE) up -d
+	docker-compose -f $(COMPOSE_FILE) up -d source-kafka
+
+.PHONY: start-conduit
+start-conduit:
+	docker-compose -f $(COMPOSE_FILE) up -d conduit-with-snowflake
 
 .PHONY: clean
 clean:

@@ -64,14 +64,36 @@ meroxadb=# SELECT pg_size_pretty(pg_total_relation_size('employees')) AS size;
 ## Kafka -> Snowflake
 
 > [!NOTE]  
-> All commands would be executed from `./kafka-to-snowflake`.
 >
-> In order to execute these tests, a [Snowflake account is required](https://signup.snowflake.com/) and provide those credentials in .env
+> In order to execute these tests, a [Snowflake account is required](https://signup.snowflake.com/) and provide those credentials in .env (`cp ./kafka-to-snowflake/.env.sample ./kafka-to-snowflake/.env`)
+ 
 
-1. `cp .env.sample .env`
-1. Update credentials
-1. `make setup`
-1. To monitor execution on Conduit: `make conduit-logs`
+### Conduit
+
+> [!NOTE]  
+> All commands would be executed from `./kafka-to-snowflake/conduit`.
+
+For every test, data would be inserted to the same table so bear in mind when checking the destination.
+
+#### Snapshot
+
+1. Setup everything but Conduit: `make setup`
+1. Create topic (this is optional as topic will be created automatically): `make create-topic`
+1. Produce messages: `make produce-messages`
+1. Start Conduit: `make start-conduit` (`make conduit-logs` to monitor its logs)
+1. Access Snowflake instance.
+
+#### CDC
+
+1. Setup everything but Conduit: `make setup`
+1. Start Conduit: `make start-conduit` (`make conduit-logs` to monitor its logs)
 1. Create topic (this is optional as topic will be created automatically): `make create-topic`
 1. Produce messages: `make produce-messages`
 1. Access Snowflake instance.
+
+### Kafka Connect
+
+> [!NOTE]  
+> All commands would be executed from `./kafka-to-snowflake/kafka-connect`.
+
+WIP

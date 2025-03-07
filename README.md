@@ -4,21 +4,6 @@ This repository will contain some Conduit Pipelines that will be used to easily 
 
 ## Postgres -> Kafka
 
-### Conduit
-
-> [!NOTE]  
-> All commands would be executed from `./pg-to-kafka/conduit`.
-
-1. Start PostgresQL and Kafka `docker-compose -f ./pg-to-kafka/conduit/compose.yml up -d pg-0 broker control-center`
-1. Insert data `make insert-data`
-1. Start Conduit `docker-compose -f ./pg-to-kafka/conduit/compose.yml up -d conduit`
-1. Access control center
-
-
-```bash
-open http://localhost:9021/clusters
-```
-
 **Test data**
 
 - 5 batches of 80k records each => 400000 records
@@ -31,18 +16,50 @@ meroxadb=# SELECT pg_size_pretty(pg_total_relation_size('employees')) AS size;
 (1 row)
 ```
 
-**Results**
+### Conduit
 
-- Conduit: (CDC) 1,108MB/s 
+> [!NOTE]  
+> All commands would be executed from `./pg-to-kafka/conduit`.
+
+#### Snapshot
+
+1. Start everything but Conduit: `make setup`
+1. Insert data `make insert-data`
+1. Start Conduit `make start-conduit`
+1. Access control center: `make open-control-center`
+
+**Results:**
+
+#### CDC
+
+1. Start everything but Conduit `make setup`
+1. Start Conduit `make start-conduit`
+1. Insert data `make insert-data`
+1. Access control center: `make open-control-center`
 
 ### Kafka Connect
 
+> [!NOTE]  
+> All commands would be executed from `./pg-to-kafka/kafka-connect`.
 
-#### Clean up
 
-```bash
-make clean && rm -Rf pg-to-kafka/data/
-```
+#### Snapshot
+
+1. `make setup`
+1. Insert data: `make insert-data`
+1. Deploy connector: `make deploy-source-connector`
+1. Access control center: `make open-control-center`
+
+**Results:**
+
+#### CDC
+
+1. `make setup`
+1. Deploy connector: `make deploy-source-connector`
+1. Insert data: `make insert-data`
+1. Access control center: `make open-control-center`
+
+**Results:**
 
 ## Kafka -> Snowflake
 

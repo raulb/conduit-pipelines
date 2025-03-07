@@ -16,6 +16,14 @@ deploy-source-connector:
 kafka-connect-logs:
 	docker logs -f kafka-connect
 
+.PHONY: connectpg
+connectpg:
+	docker exec -it source-postgres psql -U meroxauser -d meroxadb
+
 .PHONY: insert-data
 insert-data:
 	../insert-data.sh 
+
+.PHONY: open-control-center
+open-control-center:
+	open http://localhost:9021/clusters

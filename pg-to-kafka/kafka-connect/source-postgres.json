@@ -13,6 +13,7 @@
     "plugin.name": "pgoutput",
     "slot.name": "debezium_slot",
     "database.history.kafka.bootstrap.servers": "broker:29092",
-    "database.history.kafka.topic": "schema-changes.postgres"
+    "database.history.kafka.topic": "schema-changes.postgres",
+    "topic.prefix": "test"
   }
 }

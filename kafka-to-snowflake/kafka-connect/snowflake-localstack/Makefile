@@ -7,22 +7,19 @@ setup:
 .PHONY: clean
 clean:
 	docker-compose -f $(COMPOSE_FILE) down --volumes --remove-orphans
+	rm -rf plugins
 
-.PHONY: deploy-source-connector
-deploy-source-connector:
-	curl -X POST -H "Content-Type: application/json" --data @source-postgres.json http://localhost:8083/connectors
+.PHONY: deploy-sink-connector
+deploy-sink-connector:
+	curl -X POST -H "Content-Type: application/json" --data @sink-snowflake.json http://localhost:8083/connectors
 
 .PHONY: kafka-connect-logs
 kafka-connect-logs:
 	docker logs -f kafka-connect
 
-.PHONY: connectpg
-connectpg:
-	docker exec -it source-postgres psql -U meroxauser -d meroxadb
-
-.PHONY: insert-data
-insert-data:
-	../insert-data.sh 
+.PHONY: produce-messages
+produce-messages:
+	../produce-messages.sh
 
 .PHONY: open-control-center
 open-control-center:

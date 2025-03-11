@@ -52,4 +52,4 @@ open-snowflake:
 
 .PHONY: produce-messages
 produce-messages:
-	./produce-messages.sh 
+	../produce-messages.sh

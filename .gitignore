@@ -1,3 +1,4 @@
 */**/data
 */**/.env
 kafka-to-snowflake/kafka-connect/snowflake-localstack/plugins/*/**
+/kafka-to-snowflake/kafka-connect/snowflake-localstack/volume

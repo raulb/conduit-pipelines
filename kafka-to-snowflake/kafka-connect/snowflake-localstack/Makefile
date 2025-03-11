@@ -24,3 +24,7 @@ produce-messages:
 .PHONY: open-control-center
 open-control-center:
 	open http://localhost:9021/clusters
+
+.PHONY: check-localstack-connection
+check-localstack-connection:
+	curl -d '{}' snowflake.localhost.localstack.cloud:4566/session

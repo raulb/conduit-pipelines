@@ -18,9 +18,10 @@ services:
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
 
   kafka-connect:
-    image: confluentinc/cp-kafka-connect:latest
-    depends_on:
-      - source-kafka
+    image: confluentinc/cp-kafka-connect:7.8.1
+    container_name: kafka-connect
+    # depends_on:
+    #   - source-kafka
     ports:
       - "8083:8083"
     environment:
@@ -42,11 +43,10 @@ services:
     user: root
     command: ["bash", "/scripts/setup.sh"]
 
-  control-center:
+  source-control-center:
     image: confluentinc/cp-enterprise-control-center:latest
     depends_on:
       - source-kafka
-      - kafka-connect
     ports:
       - "9021:9021"
     environment:
@@ -61,9 +61,13 @@ services:
     image: localstack/snowflake:latest
     container_name: destination-snowflake
     ports:
-      - "8080:8080"
+      - "127.0.0.1:4566:4566"
+      - "127.0.0.1:4510-4559:4510-4559"
+      - "127.0.0.1:443:443"
     environment:
-      SNOWFLAKE_ACCOUNT: "testaccount"
-      SNOWFLAKE_USER: "testuser"
-      SNOWFLAKE_PASSWORD: "testpassword"
-      SNOWFLAKE_REGION: "us-west-2"
+      - LOCALSTACK_AUTH_TOKEN=${LOCALSTACK_AUTH_TOKEN:?}
+    volumes:
+      - "./volume:/var/lib/localstack"
+
+volumes:
+  kafka_data:

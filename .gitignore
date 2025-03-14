@@ -2,3 +2,7 @@
 */**/.env
 kafka-to-snowflake/kafka-connect/snowflake-localstack/plugins/*/**
 /kafka-to-snowflake/kafka-connect/snowflake-localstack/volume
+/kafka-to-snowflake/kafka-connect/volume
+kafka-to-snowflake/kafka-connect/sink-snowflake.json
+kafka-to-snowflake/kafka-connect/snowflake_key.pub
+kafka-to-snowflake/kafka-connect/snowflake_key.pem

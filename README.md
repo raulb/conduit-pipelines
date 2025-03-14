@@ -66,7 +66,6 @@ meroxadb=# SELECT pg_size_pretty(pg_total_relation_size('employees')) AS size;
 > [!NOTE]  
 >
 > In order to execute these tests, a [Snowflake account is required](https://signup.snowflake.com/) and provide those credentials in .env (`cp ./kafka-to-snowflake/.env.sample ./kafka-to-snowflake/.env`)
- 
 
 ### Conduit
 
@@ -96,4 +95,13 @@ For every test, data would be inserted to the same table so bear in mind when ch
 > [!NOTE]  
 > All commands would be executed from `./kafka-to-snowflake/kafka-connect`.
 
-WIP
+1. `make create-private-key`
+1. `make show-private-key`
+1. Copy that private key and create a user on your Snowflake cloud account with that one. Instructions [here](https://docs.confluent.io/cloud/current/connectors/cc-snowflake-sink/cc-snowflake-sink.html#creating-a-user-and-adding-the-public-key).
+1. Make sure you grant a role to that user that has access to the database and table you're going to test against.
+1. `make setup`
+1. `cp sink-snowflake.sample.json sink-snowflake.json` and update all the proper values.
+1. Make sure kafka connect is running and deploy your sink connector `make deploy-sink-connector`.
+1. Produce messages `make produce-messages`.
+
+Once finished, you should be able to see a new table on your configured database with the name `topic-ID`.

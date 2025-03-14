@@ -56,6 +56,9 @@ services:
       CONNECT_KEY_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
       CONNECT_VALUE_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
       CONNECT_LOG4J_LOGGERS: org.apache.zookeeper=ERROR,org.I0Itec.zkclient=ERROR,org.reflections=ERROR
+      SNOWFLAKE_URL_NAME: ${SNOWFLAKE_URL_NAME}
+      SNOWFLAKE_PRIVATE_KEY: ${SNOWFLAKE_PRIVATE_KEY}
+      SNOWFLAKE_PRIVATE_KEY_PASSPHRASE: ${SNOWFLAKE_PRIVATE_KEY_PASSPHRASE}
     volumes:
       - ./scripts/:/scripts/
     user: root
@@ -80,18 +83,5 @@ services:
       CONTROL_CENTER_MONITORING_INTERCEPTOR_TOPIC_PARTITIONS: 1
       CONFLUENT_METRICS_TOPIC_REPLICATION: 1
       PORT: 9021
-
-  destination-snowflake:
-    image: localstack/snowflake:latest
-    container_name: destination-snowflake
-    ports:
-      - "127.0.0.1:4566:4566"
-      - "127.0.0.1:4510-4559:4510-4559"
-      - "127.0.0.1:443:443"
-    environment:
-      - LOCALSTACK_AUTH_TOKEN=${LOCALSTACK_AUTH_TOKEN:?}
-    volumes:
-      - "./volume:/var/lib/localstack"
-
 volumes:
   kafka_data:

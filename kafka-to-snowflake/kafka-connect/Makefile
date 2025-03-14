@@ -25,6 +25,11 @@ produce-messages:
 open-control-center:
 	open http://localhost:9021/clusters
 
-.PHONY: check-localstack-connection
-check-localstack-connection:
-	curl -d '{}' snowflake.localhost.localstack.cloud:4566/session
+.PHONY: create-private-key
+create-private-key:
+	openssl genrsa -out snowflake_key.pem 2048
+	openssl rsa -in snowflake_key.pem  -pubout -out snowflake_key.pub
+
+.PHONY: show-private-key
+show-private-key:
+	grep -v "BEGIN PUBLIC" snowflake_key.pub | grep -v "END PUBLIC"|tr -d '\r\n'

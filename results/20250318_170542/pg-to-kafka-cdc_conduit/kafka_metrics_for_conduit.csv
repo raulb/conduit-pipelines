@@ -1,0 +1,1 @@
+time,msg-rate-in-per-second[destination-topic],msg-megabytes-in-per-second[destination-topic],msg-megabytes-out-per-second[destination-topic]

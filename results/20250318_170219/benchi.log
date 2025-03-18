@@ -1,0 +1,15 @@
+time=2025-03-18T17:02:19.644+01:00 level=INFO msg="Results directory" path=/Users/raulbarroso/code/raulb/conduit-pipelines/results/20250318_170219
+time=2025-03-18T17:02:19.644+01:00 level=INFO msg="Config file" path=/Users/raulbarroso/code/raulb/conduit-pipelines/pg-to-kafka/cdc/test-configuration.yml
+time=2025-03-18T17:02:19.645+01:00 level=INFO msg="Parsed config" path=/Users/raulbarroso/code/raulb/conduit-pipelines/pg-to-kafka/cdc/test-configuration.yml
+time=2025-03-18T17:02:19.645+01:00 level=INFO msg="Creating docker client"
+time=2025-03-18T17:02:19.648+01:00 level=INFO msg="Creating docker network" network=benchi
+time=2025-03-18T17:02:19.649+01:00 level=INFO msg="Docker network not found, creating it" network=benchi
+time=2025-03-18T17:02:21.936+01:00 level=INFO msg="Network created" network-id=383df12f9e0e4c296e8fc0ad9e5a5ab8beabab92f1f922bddf3809575b47c66b
+time=2025-03-18T17:02:21.938+01:00 level=INFO msg="Using network" network=benchi network-id=383df12f9e0e4c296e8fc0ad9e5a5ab8beabab92f1f922bddf3809575b47c66b
+time=2025-03-18T17:02:21.939+01:00 level=DEBUG msg="Executing command" command="/usr/local/bin/docker compose -f ../infra/compose-kafka.yml -f ../infra/compose-postgres.yml -f ./postgres/compose-postgres.override.yml config --format json"
+time=2025-03-18T17:02:22.157+01:00 level=DEBUG msg="Executing command" command="/usr/local/bin/docker compose -f ../tools/compose-conduit.yml -f ./conduit/compose-conduit.override.yml config --format json"
+time=2025-03-18T17:02:22.210+01:00 level=ERROR msg="Failed to run docker compose config" output="service \"conduit\" has neither an image nor a build context specified: invalid compose project\n"
+time=2025-03-18T17:02:22.210+01:00 level=ERROR msg="Error initializing" error="failed to build test runners: failed to find tool container names: failed to parse compose files: failed to run command /usr/local/bin/docker compose -f ../tools/compose-conduit.yml -f ./conduit/compose-conduit.override.yml config --format json: exit status 15"
+time=2025-03-18T17:02:22.210+01:00 level=INFO msg="Removing docker network" network=benchi
+time=2025-03-18T17:02:22.210+01:00 level=INFO msg="Removing network" network=benchi
+time=2025-03-18T17:02:22.267+01:00 level=INFO msg="Network removed" network=benchi

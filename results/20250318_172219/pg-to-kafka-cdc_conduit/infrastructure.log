@@ -1,0 +1,747 @@
+ Container benchi-postgres  Creating
+ Container benchi-kafka  Creating
+ Container benchi-kafka  Created
+ Container benchi-postgres  Created
+Attaching to benchi-kafka, benchi-postgres
+benchi-postgres  | The files belonging to this database system will be owned by user "postgres".
+benchi-postgres  | This user must also own the server process.
+benchi-postgres  | 
+benchi-postgres  | The database cluster will be initialized with locale "en_US.utf8".
+benchi-postgres  | The default database encoding has accordingly been set to "UTF8".
+benchi-postgres  | The default text search configuration will be set to "english".
+benchi-postgres  | 
+benchi-postgres  | Data page checksums are disabled.
+benchi-postgres  | 
+benchi-postgres  | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+benchi-postgres  | creating subdirectories ... ok
+benchi-postgres  | selecting dynamic shared memory implementation ... posix
+benchi-postgres  | selecting default max_connections ... 100
+benchi-kafka     | ===> User
+benchi-postgres  | selecting default shared_buffers ... 128MB
+benchi-kafka     | uid=1000(appuser) gid=1000(appuser) groups=1000(appuser)
+benchi-kafka     | ===> Setting default values of environment variables if not already set.
+benchi-postgres  | selecting default time zone ... Etc/UTC
+benchi-postgres  | creating configuration files ... ok
+benchi-kafka     | CLUSTER_ID not set. Setting it to default value: "5L6g3nShT-eMCtK--X86sw"
+benchi-kafka     | ===> Configuring ...
+benchi-kafka     | Running in KRaft mode...
+benchi-kafka     | KAFKA_OPTS should contain 'com.sun.management.jmxremote.rmi.port' property. It is required for accessing the JMX metrics externally.
+benchi-kafka     | ===> Launching ... 
+benchi-kafka     | ===> Using provided cluster id 5L6g3nShT-eMCtK--X86sw ...
+benchi-postgres  | running bootstrap script ... ok
+benchi-postgres  | performing post-bootstrap initialization ... ok
+benchi-postgres  | syncing data to disk ... ok
+benchi-postgres  | 
+benchi-postgres  | 
+benchi-postgres  | Success. You can now start the database server using:
+benchi-postgres  | 
+benchi-postgres  |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+benchi-postgres  | 
+benchi-postgres  | initdb: warning: enabling "trust" authentication for local connections
+benchi-postgres  | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+benchi-postgres  | waiting for server to start....2025-03-18 16:22:21.372 UTC [48] LOG:  starting PostgreSQL 16.4 (Debian 16.4-1.pgdg110+2) on aarch64-unknown-linux-gnu, compiled by gcc (Debian 10.2.1-6) 10.2.1 20210110, 64-bit
+benchi-postgres  | 2025-03-18 16:22:21.373 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+benchi-postgres  | 2025-03-18 16:22:21.375 UTC [51] LOG:  database system was shut down at 2025-03-18 16:22:21 UTC
+benchi-postgres  | 2025-03-18 16:22:21.377 UTC [48] LOG:  database system is ready to accept connections
+benchi-postgres  |  done
+benchi-postgres  | server started
+benchi-postgres  | CREATE DATABASE
+benchi-postgres  | 
+benchi-postgres  | 
+benchi-postgres  | /usr/local/bin/docker-entrypoint.sh: sourcing /docker-entrypoint-initdb.d/init-permissions.sh
+benchi-postgres  | 
+benchi-postgres  | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/init.sql
+benchi-postgres  | psql:/docker-entrypoint-initdb.d/init.sql:1: NOTICE:  table "employees" does not exist, skipping
+benchi-postgres  | DROP TABLE
+benchi-postgres  | psql:/docker-entrypoint-initdb.d/init.sql:2: NOTICE:  sequence "employees_id_seq" does not exist, skipping
+benchi-postgres  | DROP SEQUENCE
+benchi-postgres  | CREATE TABLE
+benchi-postgres  | CREATE SEQUENCE
+benchi-postgres  | ALTER TABLE
+benchi-postgres  | ALTER TABLE
+benchi-postgres  | 
+benchi-postgres  | 
+benchi-postgres  | waiting for server to shut down....2025-03-18 16:22:21.522 UTC [48] LOG:  received fast shutdown request
+benchi-postgres  | 2025-03-18 16:22:21.522 UTC [48] LOG:  aborting any active transactions
+benchi-postgres  | 2025-03-18 16:22:21.523 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+benchi-postgres  | 2025-03-18 16:22:21.523 UTC [49] LOG:  shutting down
+benchi-postgres  | 2025-03-18 16:22:21.524 UTC [49] LOG:  checkpoint starting: shutdown immediate
+benchi-postgres  | 2025-03-18 16:22:21.549 UTC [49] LOG:  checkpoint complete: wrote 928 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.005 s, sync=0.019 s, total=0.027 s; sync files=304, longest=0.005 s, average=0.001 s; distance=4267 kB, estimate=4267 kB; lsn=0/19D91E8, redo lsn=0/19D91E8
+benchi-postgres  | 2025-03-18 16:22:21.551 UTC [48] LOG:  database system is shut down
+benchi-postgres  |  done
+benchi-postgres  | server stopped
+benchi-postgres  | 
+benchi-postgres  | PostgreSQL init process complete; ready for start up.
+benchi-postgres  | 
+benchi-postgres  | 2025-03-18 16:22:21.631 UTC [1] LOG:  starting PostgreSQL 16.4 (Debian 16.4-1.pgdg110+2) on aarch64-unknown-linux-gnu, compiled by gcc (Debian 10.2.1-6) 10.2.1 20210110, 64-bit
+benchi-postgres  | 2025-03-18 16:22:21.631 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+benchi-postgres  | 2025-03-18 16:22:21.631 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+benchi-postgres  | 2025-03-18 16:22:21.633 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+benchi-postgres  | 2025-03-18 16:22:21.634 UTC [66] LOG:  database system was shut down at 2025-03-18 16:22:21 UTC
+benchi-postgres  | 2025-03-18 16:22:21.636 UTC [1] LOG:  database system is ready to accept connections
+benchi-kafka     | 2025-03-18 16:22:25.604 | main | INFO | io.prometheus.jmx.JavaAgent | Starting ...
+benchi-kafka     | 2025-03-18 16:22:26.089 | main | INFO | io.prometheus.jmx.JavaAgent | HTTP enabled [true]
+benchi-kafka     | 2025-03-18 16:22:26.090 | main | INFO | io.prometheus.jmx.JavaAgent | HTTP host:port [0.0.0.0:7071]
+benchi-kafka     | 2025-03-18 16:22:26.099 | main | INFO | io.prometheus.jmx.JavaAgent | OpenTelemetry enabled [false]
+benchi-kafka     | 2025-03-18 16:22:26.163 | main | INFO | io.prometheus.jmx.JavaAgent | Running ...
+benchi-kafka     | [2025-03-18 16:22:26,276] INFO Registered kafka:type=kafka.Log4jController MBean (kafka.utils.Log4jControllerRegistration$)
+benchi-kafka     | [2025-03-18 16:22:26,329] INFO Setting -D jdk.tls.rejectClientInitiatedRenegotiation=true to disable client-initiated TLS renegotiation (org.apache.zookeeper.common.X509Util)
+benchi-kafka     | [2025-03-18 16:22:26,438] INFO Registered signal handlers for TERM, INT, HUP (org.apache.kafka.common.utils.LoggingSignalHandler)
+benchi-kafka     | [2025-03-18 16:22:26,441] INFO [ControllerServer id=1] Starting controller (kafka.server.ControllerServer)
+benchi-kafka     | [2025-03-18 16:22:26,621] INFO Updated connection-accept-rate max connection creation rate to 2147483647 (kafka.network.ConnectionQuotas)
+benchi-kafka     | [2025-03-18 16:22:26,642] INFO [SocketServer listenerType=CONTROLLER, nodeId=1] Created data-plane acceptor and processors for endpoint : ListenerName(CONTROLLER) (kafka.network.SocketServer)
+benchi-kafka     | [2025-03-18 16:22:26,648] INFO authorizerStart completed for endpoint CONTROLLER. Endpoint is now READY. (org.apache.kafka.server.network.EndpointReadyFutures)
+benchi-kafka     | [2025-03-18 16:22:26,649] INFO [SharedServer id=1] Starting SharedServer (kafka.server.SharedServer)
+benchi-kafka     | [2025-03-18 16:22:26,709] INFO [LogLoader partition=__cluster_metadata-0, dir=/tmp/kafka-logs] Loading producer state till offset 0 with message format version 2 (kafka.log.UnifiedLog$)
+benchi-kafka     | [2025-03-18 16:22:26,709] INFO [LogLoader partition=__cluster_metadata-0, dir=/tmp/kafka-logs] Reloading from producer snapshot and rebuilding producer state from offset 0 (kafka.log.UnifiedLog$)
+benchi-kafka     | [2025-03-18 16:22:26,709] INFO [LogLoader partition=__cluster_metadata-0, dir=/tmp/kafka-logs] Producer state recovery took 0ms for snapshot load and 0ms for segment recovery from offset 0 (kafka.log.UnifiedLog$)
+benchi-kafka     | [2025-03-18 16:22:26,725] INFO Initialized snapshots with IDs SortedSet() from /tmp/kafka-logs/__cluster_metadata-0 (kafka.raft.KafkaMetadataLog$)
+benchi-kafka     | [2025-03-18 16:22:26,731] INFO [raft-expiration-reaper]: Starting (kafka.raft.TimingWheelExpirationService$ExpiredOperationReaper)
+benchi-kafka     | [2025-03-18 16:22:26,735] INFO [RaftManager id=1] Reading KRaft snapshot and log as part of the initialization (org.apache.kafka.raft.KafkaRaftClient)
+benchi-kafka     | [2025-03-18 16:22:26,738] INFO [RaftManager id=1] Starting voters are VoterSet(voters={1=VoterNode(voterKey=ReplicaKey(id=1, directoryId=Optional.empty), listeners=Endpoints(endpoints={ListenerName(CONTROLLER)=benchi-kafka/172.19.0.3:9093}), supportedKRaftVersion=SupportedVersionRange[min_version:0, max_version:0])}) (org.apache.kafka.raft.KafkaRaftClient)
+benchi-kafka     | [2025-03-18 16:22:26,739] INFO [RaftManager id=1] Starting request manager with static voters: [benchi-kafka:9093 (id: 1 rack: null)] (org.apache.kafka.raft.KafkaRaftClient)
+benchi-kafka     | [2025-03-18 16:22:26,742] INFO [RaftManager id=1] Attempting durable transition to Unattached(epoch=0, votedKey=null, voters=[1], electionTimeoutMs=1052, highWatermark=Optional.empty) from null (org.apache.kafka.raft.QuorumState)
+benchi-kafka     | [2025-03-18 16:22:26,755] INFO [RaftManager id=1] Completed transition to Unattached(epoch=0, votedKey=null, voters=[1], electionTimeoutMs=1052, highWatermark=Optional.empty) from null (org.apache.kafka.raft.QuorumState)
+benchi-kafka     | [2025-03-18 16:22:26,760] INFO [RaftManager id=1] Attempting durable transition to CandidateState(localId=1, localDirectoryId=8HQFeBRTScZ9JU1nDSbGxg,epoch=1, retries=1, voteStates={1=org.apache.kafka.raft.CandidateState$VoterState@5f0fd5a0}, highWatermark=Optional.empty, electionTimeoutMs=1736) from Unattached(epoch=0, votedKey=null, voters=[1], electionTimeoutMs=1052, highWatermark=Optional.empty) (org.apache.kafka.raft.QuorumState)
+benchi-kafka     | [2025-03-18 16:22:26,762] INFO [RaftManager id=1] Completed transition to CandidateState(localId=1, localDirectoryId=8HQFeBRTScZ9JU1nDSbGxg,epoch=1, retries=1, voteStates={1=org.apache.kafka.raft.CandidateState$VoterState@5f0fd5a0}, highWatermark=Optional.empty, electionTimeoutMs=1736) from Unattached(epoch=0, votedKey=null, voters=[1], electionTimeoutMs=1052, highWatermark=Optional.empty) (org.apache.kafka.raft.QuorumState)
+benchi-kafka     | [2025-03-18 16:22:26,764] INFO [RaftManager id=1] Attempting durable transition to Leader(localReplicaKey=ReplicaKey(id=1, directoryId=Optional[8HQFeBRTScZ9JU1nDSbGxg]), epoch=1, epochStartOffset=0, highWatermark=Optional.empty, voterStates={1=ReplicaState(replicaKey=ReplicaKey(id=1, directoryId=Optional.empty), endOffset=Optional.empty, lastFetchTimestamp=-1, lastCaughtUpTimestamp=-1, hasAcknowledgedLeader=true)}) from CandidateState(localId=1, localDirectoryId=8HQFeBRTScZ9JU1nDSbGxg,epoch=1, retries=1, voteStates={1=org.apache.kafka.raft.CandidateState$VoterState@5f0fd5a0}, highWatermark=Optional.empty, electionTimeoutMs=1736) (org.apache.kafka.raft.QuorumState)
+benchi-kafka     | [2025-03-18 16:22:26,766] INFO [RaftManager id=1] Completed transition to Leader(localReplicaKey=ReplicaKey(id=1, directoryId=Optional[8HQFeBRTScZ9JU1nDSbGxg]), epoch=1, epochStartOffset=0, highWatermark=Optional.empty, voterStates={1=ReplicaState(replicaKey=ReplicaKey(id=1, directoryId=Optional.empty), endOffset=Optional.empty, lastFetchTimestamp=-1, lastCaughtUpTimestamp=-1, hasAcknowledgedLeader=true)}) from CandidateState(localId=1, localDirectoryId=8HQFeBRTScZ9JU1nDSbGxg,epoch=1, retries=1, voteStates={1=org.apache.kafka.raft.CandidateState$VoterState@5f0fd5a0}, highWatermark=Optional.empty, electionTimeoutMs=1736) (org.apache.kafka.raft.QuorumState)
+benchi-kafka     | [2025-03-18 16:22:26,777] INFO [kafka-1-raft-outbound-request-thread]: Starting (org.apache.kafka.raft.KafkaNetworkChannel$SendThread)
+benchi-kafka     | [2025-03-18 16:22:26,777] INFO [kafka-1-raft-io-thread]: Starting (org.apache.kafka.raft.KafkaRaftClientDriver)
+benchi-kafka     | [2025-03-18 16:22:26,785] INFO [MetadataLoader id=1] initializeNewPublishers: the loader is still catching up because we still don't know the high water mark yet. (org.apache.kafka.image.loader.MetadataLoader)
+benchi-kafka     | [2025-03-18 16:22:26,787] INFO [ControllerServer id=1] Waiting for controller quorum voters future (kafka.server.ControllerServer)
+benchi-kafka     | [2025-03-18 16:22:26,787] INFO [ControllerServer id=1] Finished waiting for controller quorum voters future (kafka.server.ControllerServer)
+benchi-kafka     | [2025-03-18 16:22:26,803] INFO [RaftManager id=1] High watermark set to LogOffsetMetadata(offset=1, metadata=Optional[(segmentBaseOffset=0,relativePositionInSegment=91)]) for the first time for epoch 1 based on indexOfHw 0 and voters [ReplicaState(replicaKey=ReplicaKey(id=1, directoryId=Optional.empty), endOffset=Optional[LogOffsetMetadata(offset=1, metadata=Optional[(segmentBaseOffset=0,relativePositionInSegment=91)])], lastFetchTimestamp=-1, lastCaughtUpTimestamp=-1, hasAcknowledgedLeader=true)] (org.apache.kafka.raft.LeaderState)
+benchi-kafka     | [2025-03-18 16:22:26,805] INFO [controller-1-ThrottledChannelReaper-Fetch]: Starting (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+benchi-kafka     | [2025-03-18 16:22:26,805] INFO [controller-1-ThrottledChannelReaper-Produce]: Starting (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+benchi-kafka     | [2025-03-18 16:22:26,805] INFO [controller-1-ThrottledChannelReaper-Request]: Starting (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+benchi-kafka     | [2025-03-18 16:22:26,806] INFO [controller-1-ThrottledChannelReaper-ControllerMutation]: Starting (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+benchi-kafka     | [2025-03-18 16:22:26,811] INFO [ExpirationReaper-1-AlterAcls]: Starting (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+benchi-kafka     | [2025-03-18 16:22:26,815] INFO [RaftManager id=1] Registered the listener org.apache.kafka.image.loader.MetadataLoader@1457998628 (org.apache.kafka.raft.KafkaRaftClient)
+benchi-kafka     | [2025-03-18 16:22:26,815] INFO [RaftManager id=1] Registered the listener org.apache.kafka.controller.QuorumController$QuorumMetaLogListener@1725830685 (org.apache.kafka.raft.KafkaRaftClient)
+benchi-kafka     | [2025-03-18 16:22:26,927] INFO [MetadataLoader id=1] initializeNewPublishers: The loader is still catching up because we have loaded up to offset -1, but the high water mark is 1 (org.apache.kafka.image.loader.MetadataLoader)
+benchi-kafka     | [2025-03-18 16:22:26,970] INFO [RaftManager id=1] Setting the next offset of org.apache.kafka.image.loader.MetadataLoader@1457998628 to 0 since there are no snapshots (org.apache.kafka.raft.KafkaRaftClient)
+benchi-kafka     | [2025-03-18 16:22:26,971] INFO [ControllerServer id=1] Waiting for the controller metadata publishers to be installed (kafka.server.ControllerServer)
+benchi-kafka     | [2025-03-18 16:22:26,972] INFO [ControllerServer id=1] Finished waiting for the controller metadata publishers to be installed (kafka.server.ControllerServer)
+benchi-kafka     | [2025-03-18 16:22:26,973] INFO [MetadataLoader id=1] initializeNewPublishers: The loader is still catching up because we have loaded up to offset -1, but the high water mark is 1 (org.apache.kafka.image.loader.MetadataLoader)
+benchi-kafka     | [2025-03-18 16:22:26,976] INFO [SocketServer listenerType=CONTROLLER, nodeId=1] Enabling request processing. (kafka.network.SocketServer)
+benchi-kafka     | [2025-03-18 16:22:26,979] INFO [RaftManager id=1] Setting the next offset of org.apache.kafka.controller.QuorumController$QuorumMetaLogListener@1725830685 to 0 since there are no snapshots (org.apache.kafka.raft.KafkaRaftClient)
+benchi-kafka     | [2025-03-18 16:22:26,983] INFO [MetadataLoader id=1] maybePublishMetadata(LOG_DELTA): The loader is still catching up because we have not loaded a controller record as of offset 0 and high water mark is 1 (org.apache.kafka.image.loader.MetadataLoader)
+benchi-kafka     | [2025-03-18 16:22:26,992] INFO Awaiting socket connections on 0.0.0.0:9093. (kafka.network.DataPlaneAcceptor)
+benchi-kafka     | [2025-03-18 16:22:27,025] INFO [controller-1-to-controller-registration-channel-manager]: Starting (kafka.server.NodeToControllerRequestThread)
+benchi-kafka     | [2025-03-18 16:22:27,026] INFO [ControllerRegistrationManager id=1 incarnation=gH5VaNaMRrOPpw5zSPEvhw] initialized channel manager. (kafka.server.ControllerRegistrationManager)
+benchi-kafka     | [2025-03-18 16:22:27,026] INFO [ControllerServer id=1] Waiting for all of the authorizer futures to be completed (kafka.server.ControllerServer)
+benchi-kafka     | [2025-03-18 16:22:27,027] INFO [ControllerServer id=1] Finished waiting for all of the authorizer futures to be completed (kafka.server.ControllerServer)
+benchi-kafka     | [2025-03-18 16:22:27,027] INFO [ControllerServer id=1] Waiting for all of the SocketServer Acceptors to be started (kafka.server.ControllerServer)
+benchi-kafka     | [2025-03-18 16:22:27,027] INFO [ControllerServer id=1] Finished waiting for all of the SocketServer Acceptors to be started (kafka.server.ControllerServer)
+benchi-kafka     | [2025-03-18 16:22:27,027] INFO [ControllerRegistrationManager id=1 incarnation=gH5VaNaMRrOPpw5zSPEvhw] maybeSendControllerRegistration: cannot register yet because the metadata.version is still 3.0-IV1, which does not support KIP-919 controller registration. (kafka.server.ControllerRegistrationManager)
+benchi-kafka     | [2025-03-18 16:22:27,028] INFO [controller-1-to-controller-registration-channel-manager]: Recorded new KRaft controller, from now on will use node benchi-kafka:9093 (id: 1 rack: null) (kafka.server.NodeToControllerRequestThread)
+benchi-kafka     | [2025-03-18 16:22:27,027] INFO [BrokerServer id=1] Transition from SHUTDOWN to STARTING (kafka.server.BrokerServer)
+benchi-kafka     | [2025-03-18 16:22:27,030] INFO [BrokerServer id=1] Starting broker (kafka.server.BrokerServer)
+benchi-kafka     | [2025-03-18 16:22:27,040] INFO [MetadataLoader id=1] maybePublishMetadata(LOG_DELTA): The loader finished catching up to the current high water mark of 5 (org.apache.kafka.image.loader.MetadataLoader)
+benchi-kafka     | [2025-03-18 16:22:27,042] INFO [MetadataLoader id=1] InitializeNewPublishers: initializing SnapshotGenerator with a snapshot at offset 4 (org.apache.kafka.image.loader.MetadataLoader)
+benchi-kafka     | [2025-03-18 16:22:27,042] INFO [MetadataLoader id=1] InitializeNewPublishers: initializing KRaftMetadataCachePublisher with a snapshot at offset 4 (org.apache.kafka.image.loader.MetadataLoader)
+benchi-kafka     | [2025-03-18 16:22:27,042] INFO [MetadataLoader id=1] InitializeNewPublishers: initializing FeaturesPublisher with a snapshot at offset 4 (org.apache.kafka.image.loader.MetadataLoader)
+benchi-kafka     | [2025-03-18 16:22:27,043] INFO [ControllerServer id=1] Loaded new metadata Features(metadataVersion=3.9-IV0, finalizedFeatures={metadata.version=21}, finalizedFeaturesEpoch=4). (org.apache.kafka.metadata.publisher.FeaturesPublisher)
+benchi-kafka     | [2025-03-18 16:22:27,043] INFO [MetadataLoader id=1] InitializeNewPublishers: initializing ControllerRegistrationsPublisher with a snapshot at offset 4 (org.apache.kafka.image.loader.MetadataLoader)
+benchi-kafka     | [2025-03-18 16:22:27,043] INFO [MetadataLoader id=1] InitializeNewPublishers: initializing ControllerRegistrationManager with a snapshot at offset 4 (org.apache.kafka.image.loader.MetadataLoader)
+benchi-kafka     | [2025-03-18 16:22:27,043] INFO [MetadataLoader id=1] InitializeNewPublishers: initializing DynamicConfigPublisher controller id=1 with a snapshot at offset 4 (org.apache.kafka.image.loader.MetadataLoader)
+benchi-kafka     | [2025-03-18 16:22:27,048] INFO [MetadataLoader id=1] InitializeNewPublishers: initializing DynamicClientQuotaPublisher controller id=1 with a snapshot at offset 4 (org.apache.kafka.image.loader.MetadataLoader)
+benchi-kafka     | [2025-03-18 16:22:27,054] INFO [ControllerRegistrationManager id=1 incarnation=gH5VaNaMRrOPpw5zSPEvhw] sendControllerRegistration: attempting to send ControllerRegistrationRequestData(controllerId=1, incarnationId=gH5VaNaMRrOPpw5zSPEvhw, zkMigrationReady=false, listeners=[Listener(name='CONTROLLER', host='benchi-kafka', port=9093, securityProtocol=0)], features=[Feature(name='kraft.version', minSupportedVersion=0, maxSupportedVersion=1), Feature(name='metadata.version', minSupportedVersion=1, maxSupportedVersion=21)]) (kafka.server.ControllerRegistrationManager)
+benchi-kafka     | [2025-03-18 16:22:27,054] INFO [MetadataLoader id=1] InitializeNewPublishers: initializing ScramPublisher controller id=1 with a snapshot at offset 4 (org.apache.kafka.image.loader.MetadataLoader)
+benchi-kafka     | [2025-03-18 16:22:27,054] INFO [MetadataLoader id=1] InitializeNewPublishers: initializing DelegationTokenPublisher controller id=1 with a snapshot at offset 4 (org.apache.kafka.image.loader.MetadataLoader)
+benchi-kafka     | [2025-03-18 16:22:27,056] INFO [MetadataLoader id=1] InitializeNewPublishers: initializing ControllerMetadataMetricsPublisher with a snapshot at offset 4 (org.apache.kafka.image.loader.MetadataLoader)
+benchi-kafka     | [2025-03-18 16:22:27,057] INFO [MetadataLoader id=1] InitializeNewPublishers: initializing AclPublisher controller id=1 with a snapshot at offset 4 (org.apache.kafka.image.loader.MetadataLoader)
+benchi-kafka     | [2025-03-18 16:22:27,063] INFO [broker-1-ThrottledChannelReaper-Fetch]: Starting (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+benchi-kafka     | [2025-03-18 16:22:27,065] INFO [broker-1-ThrottledChannelReaper-Produce]: Starting (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+benchi-kafka     | [2025-03-18 16:22:27,066] INFO [broker-1-ThrottledChannelReaper-Request]: Starting (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+benchi-kafka     | [2025-03-18 16:22:27,066] INFO [broker-1-ThrottledChannelReaper-ControllerMutation]: Starting (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+benchi-kafka     | [2025-03-18 16:22:27,109] INFO [BrokerServer id=1] Waiting for controller quorum voters future (kafka.server.BrokerServer)
+benchi-kafka     | [2025-03-18 16:22:27,110] INFO [BrokerServer id=1] Finished waiting for controller quorum voters future (kafka.server.BrokerServer)
+benchi-kafka     | [2025-03-18 16:22:27,121] INFO [broker-1-to-controller-forwarding-channel-manager]: Starting (kafka.server.NodeToControllerRequestThread)
+benchi-kafka     | [2025-03-18 16:22:27,121] INFO [broker-1-to-controller-forwarding-channel-manager]: Recorded new KRaft controller, from now on will use node benchi-kafka:9093 (id: 1 rack: null) (kafka.server.NodeToControllerRequestThread)
+benchi-kafka     | [2025-03-18 16:22:27,124] INFO [client-metrics-reaper]: Starting (org.apache.kafka.server.util.timer.SystemTimerReaper$Reaper)
+benchi-kafka     | [2025-03-18 16:22:27,172] INFO [ControllerRegistrationManager id=1 incarnation=gH5VaNaMRrOPpw5zSPEvhw] Our registration has been persisted to the metadata log. (kafka.server.ControllerRegistrationManager)
+benchi-kafka     | [2025-03-18 16:22:27,177] INFO [ControllerRegistrationManager id=1 incarnation=gH5VaNaMRrOPpw5zSPEvhw] RegistrationResponseHandler: controller acknowledged ControllerRegistrationRequest. (kafka.server.ControllerRegistrationManager)
+benchi-kafka     | [2025-03-18 16:22:27,179] INFO Updated connection-accept-rate max connection creation rate to 2147483647 (kafka.network.ConnectionQuotas)
+benchi-kafka     | [2025-03-18 16:22:27,184] INFO [SocketServer listenerType=BROKER, nodeId=1] Created data-plane acceptor and processors for endpoint : ListenerName(PLAINTEXT) (kafka.network.SocketServer)
+benchi-kafka     | [2025-03-18 16:22:27,190] INFO [broker-1-to-controller-alter-partition-channel-manager]: Starting (kafka.server.NodeToControllerRequestThread)
+benchi-kafka     | [2025-03-18 16:22:27,190] INFO [broker-1-to-controller-alter-partition-channel-manager]: Recorded new KRaft controller, from now on will use node benchi-kafka:9093 (id: 1 rack: null) (kafka.server.NodeToControllerRequestThread)
+benchi-kafka     | [2025-03-18 16:22:27,194] INFO [broker-1-to-controller-directory-assignments-channel-manager]: Starting (kafka.server.NodeToControllerRequestThread)
+benchi-kafka     | [2025-03-18 16:22:27,194] INFO [broker-1-to-controller-directory-assignments-channel-manager]: Recorded new KRaft controller, from now on will use node benchi-kafka:9093 (id: 1 rack: null) (kafka.server.NodeToControllerRequestThread)
+benchi-kafka     | [2025-03-18 16:22:27,197] INFO [ExpirationReaper-1-Produce]: Starting (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+benchi-kafka     | [2025-03-18 16:22:27,200] INFO [ExpirationReaper-1-Fetch]: Starting (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+benchi-kafka     | [2025-03-18 16:22:27,202] INFO [ExpirationReaper-1-DeleteRecords]: Starting (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+benchi-kafka     | [2025-03-18 16:22:27,203] INFO [ExpirationReaper-1-ElectLeader]: Starting (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+benchi-kafka     | [2025-03-18 16:22:27,203] INFO [ExpirationReaper-1-RemoteFetch]: Starting (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+benchi-kafka     | [2025-03-18 16:22:27,209] INFO [ExpirationReaper-1-Heartbeat]: Starting (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+benchi-kafka     | [2025-03-18 16:22:27,209] INFO [ExpirationReaper-1-Rebalance]: Starting (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+benchi-kafka     | [2025-03-18 16:22:27,220] INFO Unable to read the broker epoch in /tmp/kafka-logs. (kafka.log.LogManager)
+benchi-kafka     | [2025-03-18 16:22:27,221] INFO [broker-1-to-controller-heartbeat-channel-manager]: Starting (kafka.server.NodeToControllerRequestThread)
+benchi-kafka     | [2025-03-18 16:22:27,221] INFO [broker-1-to-controller-heartbeat-channel-manager]: Recorded new KRaft controller, from now on will use node benchi-kafka:9093 (id: 1 rack: null) (kafka.server.NodeToControllerRequestThread)
+benchi-kafka     | [2025-03-18 16:22:27,223] INFO [BrokerLifecycleManager id=1] Incarnation abz9iRwyQdiQshkoPLtGBg of broker 1 in cluster 5L6g3nShT-eMCtK--X86sw is now STARTING. (kafka.server.BrokerLifecycleManager)
+benchi-kafka     | [2025-03-18 16:22:27,228] INFO [ExpirationReaper-1-AlterAcls]: Starting (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+benchi-kafka     | [2025-03-18 16:22:27,243] INFO [BrokerServer id=1] Waiting for the broker metadata publishers to be installed (kafka.server.BrokerServer)
+benchi-kafka     | [2025-03-18 16:22:27,244] INFO [BrokerServer id=1] Finished waiting for the broker metadata publishers to be installed (kafka.server.BrokerServer)
+benchi-kafka     | [2025-03-18 16:22:27,244] INFO [BrokerServer id=1] Waiting for the controller to acknowledge that we are caught up (kafka.server.BrokerServer)
+benchi-kafka     | [2025-03-18 16:22:27,244] INFO [MetadataLoader id=1] InitializeNewPublishers: initializing MetadataVersionPublisher(id=1) with a snapshot at offset 5 (org.apache.kafka.image.loader.MetadataLoader)
+benchi-kafka     | [2025-03-18 16:22:27,244] INFO [MetadataLoader id=1] InitializeNewPublishers: initializing BrokerMetadataPublisher with a snapshot at offset 5 (org.apache.kafka.image.loader.MetadataLoader)
+benchi-kafka     | [2025-03-18 16:22:27,245] INFO [BrokerMetadataPublisher id=1] Publishing initial metadata at offset OffsetAndEpoch(offset=5, epoch=1) with metadata.version 3.9-IV0. (kafka.server.metadata.BrokerMetadataPublisher)
+benchi-kafka     | [2025-03-18 16:22:27,246] INFO Loading logs from log dirs ArrayBuffer(/tmp/kafka-logs) (kafka.log.LogManager)
+benchi-kafka     | [2025-03-18 16:22:27,250] INFO No logs found to be loaded in /tmp/kafka-logs (kafka.log.LogManager)
+benchi-kafka     | [2025-03-18 16:22:27,255] INFO Loaded 0 logs in 9ms (kafka.log.LogManager)
+benchi-kafka     | [2025-03-18 16:22:27,256] INFO Starting log cleanup with a period of 300000 ms. (kafka.log.LogManager)
+benchi-kafka     | [2025-03-18 16:22:27,256] INFO Starting log flusher with a default period of 9223372036854775807 ms. (kafka.log.LogManager)
+benchi-kafka     | [2025-03-18 16:22:27,268] INFO [kafka-log-cleaner-thread-0]: Starting (kafka.log.LogCleaner$CleanerThread)
+benchi-kafka     | [2025-03-18 16:22:27,269] INFO [LogDirFailureHandler]: Starting (kafka.server.ReplicaManager$LogDirFailureHandler)
+benchi-kafka     | [2025-03-18 16:22:27,273] INFO [AddPartitionsToTxnSenderThread-1]: Starting (kafka.server.AddPartitionsToTxnManager)
+benchi-kafka     | [2025-03-18 16:22:27,282] INFO [GroupCoordinator 1]: Starting up. (kafka.coordinator.group.GroupCoordinator)
+benchi-kafka     | [2025-03-18 16:22:27,286] INFO [GroupCoordinator 1]: Startup complete. (kafka.coordinator.group.GroupCoordinator)
+benchi-kafka     | [2025-03-18 16:22:27,287] INFO [BrokerLifecycleManager id=1] Successfully registered broker 1 with broker epoch 6 (kafka.server.BrokerLifecycleManager)
+benchi-kafka     | [2025-03-18 16:22:27,288] INFO [TransactionCoordinator id=1] Starting up. (kafka.coordinator.transaction.TransactionCoordinator)
+benchi-kafka     | [2025-03-18 16:22:27,289] INFO [TxnMarkerSenderThread-1]: Starting (kafka.coordinator.transaction.TransactionMarkerChannelManager)
+benchi-kafka     | [2025-03-18 16:22:27,289] INFO [TransactionCoordinator id=1] Startup complete. (kafka.coordinator.transaction.TransactionCoordinator)
+benchi-kafka     | [2025-03-18 16:22:27,296] INFO [MetadataLoader id=1] InitializeNewPublishers: initializing BrokerRegistrationTracker(id=1) with a snapshot at offset 5 (org.apache.kafka.image.loader.MetadataLoader)
+benchi-kafka     | [2025-03-18 16:22:27,308] INFO [BrokerLifecycleManager id=1] The broker has caught up. Transitioning from STARTING to RECOVERY. (kafka.server.BrokerLifecycleManager)
+benchi-kafka     | [2025-03-18 16:22:27,308] INFO [BrokerServer id=1] Finished waiting for the controller to acknowledge that we are caught up (kafka.server.BrokerServer)
+benchi-kafka     | [2025-03-18 16:22:27,308] INFO [BrokerServer id=1] Waiting for the initial broker metadata update to be published (kafka.server.BrokerServer)
+benchi-kafka     | [2025-03-18 16:22:27,308] INFO [BrokerServer id=1] Finished waiting for the initial broker metadata update to be published (kafka.server.BrokerServer)
+benchi-kafka     | [2025-03-18 16:22:27,310] INFO KafkaConfig values: 
+benchi-kafka     | 	advertised.listeners = PLAINTEXT://benchi-kafka:9092,CONTROLLER://benchi-kafka:9093
+benchi-kafka     | 	alter.config.policy.class.name = null
+benchi-kafka     | 	alter.log.dirs.replication.quota.window.num = 11
+benchi-kafka     | 	alter.log.dirs.replication.quota.window.size.seconds = 1
+benchi-kafka     | 	authorizer.class.name = 
+benchi-kafka     | 	auto.create.topics.enable = true
+benchi-kafka     | 	auto.include.jmx.reporter = true
+benchi-kafka     | 	auto.leader.rebalance.enable = true
+benchi-kafka     | 	background.threads = 10
+benchi-kafka     | 	broker.heartbeat.interval.ms = 2000
+benchi-kafka     | 	broker.id = 1
+benchi-kafka     | 	broker.id.generation.enable = true
+benchi-kafka     | 	broker.rack = null
+benchi-kafka     | 	broker.session.timeout.ms = 9000
+benchi-kafka     | 	client.quota.callback.class = null
+benchi-kafka     | 	compression.gzip.level = -1
+benchi-kafka     | 	compression.lz4.level = 9
+benchi-kafka     | 	compression.type = producer
+benchi-kafka     | 	compression.zstd.level = 3
+benchi-kafka     | 	connection.failed.authentication.delay.ms = 100
+benchi-kafka     | 	connections.max.idle.ms = 600000
+benchi-kafka     | 	connections.max.reauth.ms = 0
+benchi-kafka     | 	control.plane.listener.name = null
+benchi-kafka     | 	controlled.shutdown.enable = true
+benchi-kafka     | 	controlled.shutdown.max.retries = 3
+benchi-kafka     | 	controlled.shutdown.retry.backoff.ms = 5000
+benchi-kafka     | 	controller.listener.names = CONTROLLER
+benchi-kafka     | 	controller.quorum.append.linger.ms = 25
+benchi-kafka     | 	controller.quorum.bootstrap.servers = []
+benchi-kafka     | 	controller.quorum.election.backoff.max.ms = 1000
+benchi-kafka     | 	controller.quorum.election.timeout.ms = 1000
+benchi-kafka     | 	controller.quorum.fetch.timeout.ms = 2000
+benchi-kafka     | 	controller.quorum.request.timeout.ms = 2000
+benchi-kafka     | 	controller.quorum.retry.backoff.ms = 20
+benchi-kafka     | 	controller.quorum.voters = [1@benchi-kafka:9093]
+benchi-kafka     | 	controller.quota.window.num = 11
+benchi-kafka     | 	controller.quota.window.size.seconds = 1
+benchi-kafka     | 	controller.socket.timeout.ms = 30000
+benchi-kafka     | 	create.topic.policy.class.name = null
+benchi-kafka     | 	default.replication.factor = 1
+benchi-kafka     | 	delegation.token.expiry.check.interval.ms = 3600000
+benchi-kafka     | 	delegation.token.expiry.time.ms = 86400000
+benchi-kafka     | 	delegation.token.master.key = null
+benchi-kafka     | 	delegation.token.max.lifetime.ms = 604800000
+benchi-kafka     | 	delegation.token.secret.key = null
+benchi-kafka     | 	delete.records.purgatory.purge.interval.requests = 1
+benchi-kafka     | 	delete.topic.enable = true
+benchi-kafka     | 	early.start.listeners = null
+benchi-kafka     | 	eligible.leader.replicas.enable = false
+benchi-kafka     | 	fetch.max.bytes = 57671680
+benchi-kafka     | 	fetch.purgatory.purge.interval.requests = 1000
+benchi-kafka     | 	group.consumer.assignors = [org.apache.kafka.coordinator.group.assignor.UniformAssignor, org.apache.kafka.coordinator.group.assignor.RangeAssignor]
+benchi-kafka     | 	group.consumer.heartbeat.interval.ms = 5000
+benchi-kafka     | 	group.consumer.max.heartbeat.interval.ms = 15000
+benchi-kafka     | 	group.consumer.max.session.timeout.ms = 60000
+benchi-kafka     | 	group.consumer.max.size = 2147483647
+benchi-kafka     | 	group.consumer.migration.policy = disabled
+benchi-kafka     | 	group.consumer.min.heartbeat.interval.ms = 5000
+benchi-kafka     | 	group.consumer.min.session.timeout.ms = 45000
+benchi-kafka     | 	group.consumer.session.timeout.ms = 45000
+benchi-kafka     | 	group.coordinator.append.linger.ms = 10
+benchi-kafka     | 	group.coordinator.new.enable = false
+benchi-kafka     | 	group.coordinator.rebalance.protocols = [classic]
+benchi-kafka     | 	group.coordinator.threads = 1
+benchi-kafka     | 	group.initial.rebalance.delay.ms = 3000
+benchi-kafka     | 	group.max.session.timeout.ms = 1800000
+benchi-kafka     | 	group.max.size = 2147483647
+benchi-kafka     | 	group.min.session.timeout.ms = 6000
+benchi-kafka     | 	group.share.delivery.count.limit = 5
+benchi-kafka     | 	group.share.enable = false
+benchi-kafka     | 	group.share.heartbeat.interval.ms = 5000
+benchi-kafka     | 	group.share.max.groups = 10
+benchi-kafka     | 	group.share.max.heartbeat.interval.ms = 15000
+benchi-kafka     | 	group.share.max.record.lock.duration.ms = 60000
+benchi-kafka     | 	group.share.max.session.timeout.ms = 60000
+benchi-kafka     | 	group.share.max.size = 200
+benchi-kafka     | 	group.share.min.heartbeat.interval.ms = 5000
+benchi-kafka     | 	group.share.min.record.lock.duration.ms = 15000
+benchi-kafka     | 	group.share.min.session.timeout.ms = 45000
+benchi-kafka     | 	group.share.partition.max.record.locks = 200
+benchi-kafka     | 	group.share.record.lock.duration.ms = 30000
+benchi-kafka     | 	group.share.session.timeout.ms = 45000
+benchi-kafka     | 	initial.broker.registration.timeout.ms = 60000
+benchi-kafka     | 	inter.broker.listener.name = PLAINTEXT
+benchi-kafka     | 	inter.broker.protocol.version = 3.9-IV0
+benchi-kafka     | 	kafka.metrics.polling.interval.secs = 10
+benchi-kafka     | 	kafka.metrics.reporters = []
+benchi-kafka     | 	leader.imbalance.check.interval.seconds = 300
+benchi-kafka     | 	leader.imbalance.per.broker.percentage = 10
+benchi-kafka     | 	listener.security.protocol.map = CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,SSL:SSL,SASL_PLAINTEXT:SASL_PLAINTEXT,SASL_SSL:SASL_SSL
+benchi-kafka     | 	listeners = PLAINTEXT://:9092,CONTROLLER://:9093
+benchi-kafka     | 	log.cleaner.backoff.ms = 15000
+benchi-kafka     | 	log.cleaner.dedupe.buffer.size = 134217728
+benchi-kafka     | 	log.cleaner.delete.retention.ms = 86400000
+benchi-kafka     | 	log.cleaner.enable = true
+benchi-kafka     | 	log.cleaner.io.buffer.load.factor = 0.9
+benchi-kafka     | 	log.cleaner.io.buffer.size = 524288
+benchi-kafka     | 	log.cleaner.io.max.bytes.per.second = 1.7976931348623157E308
+benchi-kafka     | 	log.cleaner.max.compaction.lag.ms = 9223372036854775807
+benchi-kafka     | 	log.cleaner.min.cleanable.ratio = 0.5
+benchi-kafka     | 	log.cleaner.min.compaction.lag.ms = 0
+benchi-kafka     | 	log.cleaner.threads = 1
+benchi-kafka     | 	log.cleanup.policy = [delete]
+benchi-kafka     | 	log.dir = /tmp/kafka-logs
+benchi-kafka     | 	log.dir.failure.timeout.ms = 30000
+benchi-kafka     | 	log.dirs = null
+benchi-kafka     | 	log.flush.interval.messages = 9223372036854775807
+benchi-kafka     | 	log.flush.interval.ms = null
+benchi-kafka     | 	log.flush.offset.checkpoint.interval.ms = 60000
+benchi-kafka     | 	log.flush.scheduler.interval.ms = 9223372036854775807
+benchi-kafka     | 	log.flush.start.offset.checkpoint.interval.ms = 60000
+benchi-kafka     | 	log.index.interval.bytes = 4096
+benchi-kafka     | 	log.index.size.max.bytes = 10485760
+benchi-kafka     | 	log.initial.task.delay.ms = 30000
+benchi-kafka     | 	log.local.retention.bytes = -2
+benchi-kafka     | 	log.local.retention.ms = -2
+benchi-kafka     | 	log.message.downconversion.enable = true
+benchi-kafka     | 	log.message.format.version = 3.0-IV1
+benchi-kafka     | 	log.message.timestamp.after.max.ms = 9223372036854775807
+benchi-kafka     | 	log.message.timestamp.before.max.ms = 9223372036854775807
+benchi-kafka     | 	log.message.timestamp.difference.max.ms = 9223372036854775807
+benchi-kafka     | 	log.message.timestamp.type = CreateTime
+benchi-kafka     | 	log.preallocate = false
+benchi-kafka     | 	log.retention.bytes = -1
+benchi-kafka     | 	log.retention.check.interval.ms = 300000
+benchi-kafka     | 	log.retention.hours = 168
+benchi-kafka     | 	log.retention.minutes = null
+benchi-kafka     | 	log.retention.ms = null
+benchi-kafka     | 	log.roll.hours = 168
+benchi-kafka     | 	log.roll.jitter.hours = 0
+benchi-kafka     | 	log.roll.jitter.ms = null
+benchi-kafka     | 	log.roll.ms = null
+benchi-kafka     | 	log.segment.bytes = 1073741824
+benchi-kafka     | 	log.segment.delete.delay.ms = 60000
+benchi-kafka     | 	max.connection.creation.rate = 2147483647
+benchi-kafka     | 	max.connections = 2147483647
+benchi-kafka     | 	max.connections.per.ip = 2147483647
+benchi-kafka     | 	max.connections.per.ip.overrides = 
+benchi-kafka     | 	max.incremental.fetch.session.cache.slots = 1000
+benchi-kafka     | 	max.request.partition.size.limit = 2000
+benchi-kafka     | 	message.max.bytes = 1048588
+benchi-kafka     | 	metadata.log.dir = null
+benchi-kafka     | 	metadata.log.max.record.bytes.between.snapshots = 20971520
+benchi-kafka     | 	metadata.log.max.snapshot.interval.ms = 3600000
+benchi-kafka     | 	metadata.log.segment.bytes = 1073741824
+benchi-kafka     | 	metadata.log.segment.min.bytes = 8388608
+benchi-kafka     | 	metadata.log.segment.ms = 604800000
+benchi-kafka     | 	metadata.max.idle.interval.ms = 500
+benchi-kafka     | 	metadata.max.retention.bytes = 104857600
+benchi-kafka     | 	metadata.max.retention.ms = 604800000
+benchi-kafka     | 	metric.reporters = []
+benchi-kafka     | 	metrics.num.samples = 2
+benchi-kafka     | 	metrics.recording.level = INFO
+benchi-kafka     | 	metrics.sample.window.ms = 30000
+benchi-kafka     | 	min.insync.replicas = 1
+benchi-kafka     | 	node.id = 1
+benchi-kafka     | 	num.io.threads = 8
+benchi-kafka     | 	num.network.threads = 3
+benchi-kafka     | 	num.partitions = 1
+benchi-kafka     | 	num.recovery.threads.per.data.dir = 1
+benchi-kafka     | 	num.replica.alter.log.dirs.threads = null
+benchi-kafka     | 	num.replica.fetchers = 1
+benchi-kafka     | 	offset.metadata.max.bytes = 4096
+benchi-kafka     | 	offsets.commit.required.acks = -1
+benchi-kafka     | 	offsets.commit.timeout.ms = 5000
+benchi-kafka     | 	offsets.load.buffer.size = 5242880
+benchi-kafka     | 	offsets.retention.check.interval.ms = 600000
+benchi-kafka     | 	offsets.retention.minutes = 10080
+benchi-kafka     | 	offsets.topic.compression.codec = 0
+benchi-kafka     | 	offsets.topic.num.partitions = 50
+benchi-kafka     | 	offsets.topic.replication.factor = 1
+benchi-kafka     | 	offsets.topic.segment.bytes = 104857600
+benchi-kafka     | 	password.encoder.cipher.algorithm = AES/CBC/PKCS5Padding
+benchi-kafka     | 	password.encoder.iterations = 4096
+benchi-kafka     | 	password.encoder.key.length = 128
+benchi-kafka     | 	password.encoder.keyfactory.algorithm = null
+benchi-kafka     | 	password.encoder.old.secret = null
+benchi-kafka     | 	password.encoder.secret = null
+benchi-kafka     | 	principal.builder.class = class org.apache.kafka.common.security.authenticator.DefaultKafkaPrincipalBuilder
+benchi-kafka     | 	process.roles = [broker, controller]
+benchi-kafka     | 	producer.id.expiration.check.interval.ms = 600000
+benchi-kafka     | 	producer.id.expiration.ms = 86400000
+benchi-kafka     | 	producer.purgatory.purge.interval.requests = 1000
+benchi-kafka     | 	queued.max.request.bytes = -1
+benchi-kafka     | 	queued.max.requests = 500
+benchi-kafka     | 	quota.window.num = 11
+benchi-kafka     | 	quota.window.size.seconds = 1
+benchi-kafka     | 	remote.fetch.max.wait.ms = 500
+benchi-kafka     | 	remote.log.index.file.cache.total.size.bytes = 1073741824
+benchi-kafka     | 	remote.log.manager.copier.thread.pool.size = -1
+benchi-kafka     | 	remote.log.manager.copy.max.bytes.per.second = 9223372036854775807
+benchi-kafka     | 	remote.log.manager.copy.quota.window.num = 11
+benchi-kafka     | 	remote.log.manager.copy.quota.window.size.seconds = 1
+benchi-kafka     | 	remote.log.manager.expiration.thread.pool.size = -1
+benchi-kafka     | 	remote.log.manager.fetch.max.bytes.per.second = 9223372036854775807
+benchi-kafka     | 	remote.log.manager.fetch.quota.window.num = 11
+benchi-kafka     | 	remote.log.manager.fetch.quota.window.size.seconds = 1
+benchi-kafka     | 	remote.log.manager.task.interval.ms = 30000
+benchi-kafka     | 	remote.log.manager.task.retry.backoff.max.ms = 30000
+benchi-kafka     | 	remote.log.manager.task.retry.backoff.ms = 500
+benchi-kafka     | 	remote.log.manager.task.retry.jitter = 0.2
+benchi-kafka     | 	remote.log.manager.thread.pool.size = 10
+benchi-kafka     | 	remote.log.metadata.custom.metadata.max.bytes = 128
+benchi-kafka     | 	remote.log.metadata.manager.class.name = org.apache.kafka.server.log.remote.metadata.storage.TopicBasedRemoteLogMetadataManager
+benchi-kafka     | 	remote.log.metadata.manager.class.path = null
+benchi-kafka     | 	remote.log.metadata.manager.impl.prefix = rlmm.config.
+benchi-kafka     | 	remote.log.metadata.manager.listener.name = null
+benchi-kafka     | 	remote.log.reader.max.pending.tasks = 100
+benchi-kafka     | 	remote.log.reader.threads = 10
+benchi-kafka     | 	remote.log.storage.manager.class.name = null
+benchi-kafka     | 	remote.log.storage.manager.class.path = null
+benchi-kafka     | 	remote.log.storage.manager.impl.prefix = rsm.config.
+benchi-kafka     | 	remote.log.storage.system.enable = false
+benchi-kafka     | 	replica.fetch.backoff.ms = 1000
+benchi-kafka     | 	replica.fetch.max.bytes = 1048576
+benchi-kafka     | 	replica.fetch.min.bytes = 1
+benchi-kafka     | 	replica.fetch.response.max.bytes = 10485760
+benchi-kafka     | 	replica.fetch.wait.max.ms = 500
+benchi-kafka     | 	replica.high.watermark.checkpoint.interval.ms = 5000
+benchi-kafka     | 	replica.lag.time.max.ms = 30000
+benchi-kafka     | 	replica.selector.class = null
+benchi-kafka     | 	replica.socket.receive.buffer.bytes = 65536
+benchi-kafka     | 	replica.socket.timeout.ms = 30000
+benchi-kafka     | 	replication.quota.window.num = 11
+benchi-kafka     | 	replication.quota.window.size.seconds = 1
+benchi-kafka     | 	request.timeout.ms = 30000
+benchi-kafka     | 	reserved.broker.max.id = 1000
+benchi-kafka     | 	sasl.client.callback.handler.class = null
+benchi-kafka     | 	sasl.enabled.mechanisms = [GSSAPI]
+benchi-kafka     | 	sasl.jaas.config = null
+benchi-kafka     | 	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+benchi-kafka     | 	sasl.kerberos.min.time.before.relogin = 60000
+benchi-kafka     | 	sasl.kerberos.principal.to.local.rules = [DEFAULT]
+benchi-kafka     | 	sasl.kerberos.service.name = null
+benchi-kafka     | 	sasl.kerberos.ticket.renew.jitter = 0.05
+benchi-kafka     | 	sasl.kerberos.ticket.renew.window.factor = 0.8
+benchi-kafka     | 	sasl.login.callback.handler.class = null
+benchi-kafka     | 	sasl.login.class = null
+benchi-kafka     | 	sasl.login.connect.timeout.ms = null
+benchi-kafka     | 	sasl.login.read.timeout.ms = null
+benchi-kafka     | 	sasl.login.refresh.buffer.seconds = 300
+benchi-kafka     | 	sasl.login.refresh.min.period.seconds = 60
+benchi-kafka     | 	sasl.login.refresh.window.factor = 0.8
+benchi-kafka     | 	sasl.login.refresh.window.jitter = 0.05
+benchi-kafka     | 	sasl.login.retry.backoff.max.ms = 10000
+benchi-kafka     | 	sasl.login.retry.backoff.ms = 100
+benchi-kafka     | 	sasl.mechanism.controller.protocol = GSSAPI
+benchi-kafka     | 	sasl.mechanism.inter.broker.protocol = GSSAPI
+benchi-kafka     | 	sasl.oauthbearer.clock.skew.seconds = 30
+benchi-kafka     | 	sasl.oauthbearer.expected.audience = null
+benchi-kafka     | 	sasl.oauthbearer.expected.issuer = null
+benchi-kafka     | 	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+benchi-kafka     | 	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+benchi-kafka     | 	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+benchi-kafka     | 	sasl.oauthbearer.jwks.endpoint.url = null
+benchi-kafka     | 	sasl.oauthbearer.scope.claim.name = scope
+benchi-kafka     | 	sasl.oauthbearer.sub.claim.name = sub
+benchi-kafka     | 	sasl.oauthbearer.token.endpoint.url = null
+benchi-kafka     | 	sasl.server.callback.handler.class = null
+benchi-kafka     | 	sasl.server.max.receive.size = 524288
+benchi-kafka     | 	security.inter.broker.protocol = PLAINTEXT
+benchi-kafka     | 	security.providers = null
+benchi-kafka     | 	server.max.startup.time.ms = 9223372036854775807
+benchi-kafka     | 	socket.connection.setup.timeout.max.ms = 30000
+benchi-kafka     | 	socket.connection.setup.timeout.ms = 10000
+benchi-kafka     | 	socket.listen.backlog.size = 50
+benchi-kafka     | 	socket.receive.buffer.bytes = 102400
+benchi-kafka     | 	socket.request.max.bytes = 104857600
+benchi-kafka     | 	socket.send.buffer.bytes = 102400
+benchi-kafka     | 	ssl.allow.dn.changes = false
+benchi-kafka     | 	ssl.allow.san.changes = false
+benchi-kafka     | 	ssl.cipher.suites = []
+benchi-kafka     | 	ssl.client.auth = none
+benchi-kafka     | 	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+benchi-kafka     | 	ssl.endpoint.identification.algorithm = https
+benchi-kafka     | 	ssl.engine.factory.class = null
+benchi-kafka     | 	ssl.key.password = null
+benchi-kafka     | 	ssl.keymanager.algorithm = SunX509
+benchi-kafka     | 	ssl.keystore.certificate.chain = null
+benchi-kafka     | 	ssl.keystore.key = null
+benchi-kafka     | 	ssl.keystore.location = null
+benchi-kafka     | 	ssl.keystore.password = null
+benchi-kafka     | 	ssl.keystore.type = JKS
+benchi-kafka     | 	ssl.principal.mapping.rules = DEFAULT
+benchi-kafka     | 	ssl.protocol = TLSv1.3
+benchi-kafka     | 	ssl.provider = null
+benchi-kafka     | 	ssl.secure.random.implementation = null
+benchi-kafka     | 	ssl.trustmanager.algorithm = PKIX
+benchi-kafka     | 	ssl.truststore.certificates = null
+benchi-kafka     | 	ssl.truststore.location = null
+benchi-kafka     | 	ssl.truststore.password = null
+benchi-kafka     | 	ssl.truststore.type = JKS
+benchi-kafka     | 	telemetry.max.bytes = 1048576
+benchi-kafka     | 	transaction.abort.timed.out.transaction.cleanup.interval.ms = 10000
+benchi-kafka     | 	transaction.max.timeout.ms = 900000
+benchi-kafka     | 	transaction.partition.verification.enable = true
+benchi-kafka     | 	transaction.remove.expired.transaction.cleanup.interval.ms = 3600000
+benchi-kafka     | 	transaction.state.log.load.buffer.size = 5242880
+benchi-kafka     | 	transaction.state.log.min.isr = 2
+benchi-kafka     | 	transaction.state.log.num.partitions = 50
+benchi-kafka     | 	transaction.state.log.replication.factor = 3
+benchi-kafka     | 	transaction.state.log.segment.bytes = 104857600
+benchi-kafka     | 	transactional.id.expiration.ms = 604800000
+benchi-kafka     | 	unclean.leader.election.enable = false
+benchi-kafka     | 	unclean.leader.election.interval.ms = 300000
+benchi-kafka     | 	unstable.api.versions.enable = false
+benchi-kafka     | 	unstable.feature.versions.enable = false
+benchi-kafka     | 	zookeeper.clientCnxnSocket = null
+benchi-kafka     | 	zookeeper.connect = null
+benchi-kafka     | 	zookeeper.connection.timeout.ms = null
+benchi-kafka     | 	zookeeper.max.in.flight.requests = 10
+benchi-kafka     | 	zookeeper.metadata.migration.enable = false
+benchi-kafka     | 	zookeeper.metadata.migration.min.batch.size = 200
+benchi-kafka     | 	zookeeper.session.timeout.ms = 18000
+benchi-kafka     | 	zookeeper.set.acl = false
+benchi-kafka     | 	zookeeper.ssl.cipher.suites = null
+benchi-kafka     | 	zookeeper.ssl.client.enable = false
+benchi-kafka     | 	zookeeper.ssl.crl.enable = false
+benchi-kafka     | 	zookeeper.ssl.enabled.protocols = null
+benchi-kafka     | 	zookeeper.ssl.endpoint.identification.algorithm = HTTPS
+benchi-kafka     | 	zookeeper.ssl.keystore.location = null
+benchi-kafka     | 	zookeeper.ssl.keystore.password = null
+benchi-kafka     | 	zookeeper.ssl.keystore.type = null
+benchi-kafka     | 	zookeeper.ssl.ocsp.enable = false
+benchi-kafka     | 	zookeeper.ssl.protocol = TLSv1.2
+benchi-kafka     | 	zookeeper.ssl.truststore.location = null
+benchi-kafka     | 	zookeeper.ssl.truststore.password = null
+benchi-kafka     | 	zookeeper.ssl.truststore.type = null
+benchi-kafka     |  (kafka.server.KafkaConfig)
+benchi-kafka     | [2025-03-18 16:22:27,314] INFO [BrokerServer id=1] Waiting for the broker to be unfenced (kafka.server.BrokerServer)
+benchi-kafka     | [2025-03-18 16:22:27,354] INFO [BrokerLifecycleManager id=1] The broker has been unfenced. Transitioning from RECOVERY to RUNNING. (kafka.server.BrokerLifecycleManager)
+benchi-kafka     | [2025-03-18 16:22:27,354] INFO [BrokerServer id=1] Finished waiting for the broker to be unfenced (kafka.server.BrokerServer)
+benchi-kafka     | [2025-03-18 16:22:27,355] INFO authorizerStart completed for endpoint PLAINTEXT. Endpoint is now READY. (org.apache.kafka.server.network.EndpointReadyFutures)
+benchi-kafka     | [2025-03-18 16:22:27,355] INFO [SocketServer listenerType=BROKER, nodeId=1] Enabling request processing. (kafka.network.SocketServer)
+benchi-kafka     | [2025-03-18 16:22:27,356] INFO Awaiting socket connections on 0.0.0.0:9092. (kafka.network.DataPlaneAcceptor)
+benchi-kafka     | [2025-03-18 16:22:27,356] INFO [BrokerServer id=1] Waiting for all of the authorizer futures to be completed (kafka.server.BrokerServer)
+benchi-kafka     | [2025-03-18 16:22:27,356] INFO [BrokerServer id=1] Finished waiting for all of the authorizer futures to be completed (kafka.server.BrokerServer)
+benchi-kafka     | [2025-03-18 16:22:27,357] INFO [BrokerServer id=1] Waiting for all of the SocketServer Acceptors to be started (kafka.server.BrokerServer)
+benchi-kafka     | [2025-03-18 16:22:27,357] INFO [BrokerServer id=1] Finished waiting for all of the SocketServer Acceptors to be started (kafka.server.BrokerServer)
+benchi-kafka     | [2025-03-18 16:22:27,357] INFO [BrokerServer id=1] Transition from STARTING to STARTED (kafka.server.BrokerServer)
+benchi-kafka     | [2025-03-18 16:22:27,357] INFO Kafka version: 3.9.0 (org.apache.kafka.common.utils.AppInfoParser)
+benchi-kafka     | [2025-03-18 16:22:27,357] INFO Kafka commitId: a60e31147e6b01ee (org.apache.kafka.common.utils.AppInfoParser)
+benchi-kafka     | [2025-03-18 16:22:27,357] INFO Kafka startTimeMs: 1742314947357 (org.apache.kafka.common.utils.AppInfoParser)
+benchi-kafka     | [2025-03-18 16:22:27,366] INFO [KafkaRaftServer nodeId=1] Kafka Server started (kafka.server.KafkaRaftServer)
+benchi-postgres  | 2025-03-18 16:22:32.044 UTC [82] LOG:  logical decoding found consistent point at 0/19DCCF0
+benchi-postgres  | 2025-03-18 16:22:32.044 UTC [82] DETAIL:  There are no running transactions.
+benchi-postgres  | 2025-03-18 16:22:32.044 UTC [82] STATEMENT:  CREATE_REPLICATION_SLOT conduitslot  LOGICAL pgoutput EXPORT_SNAPSHOT
+benchi-postgres  | 2025-03-18 16:22:32.044 UTC [82] LOG:  exported logical decoding snapshot: "00000003-00000006-1" with 0 transaction IDs
+benchi-postgres  | 2025-03-18 16:22:32.044 UTC [82] STATEMENT:  CREATE_REPLICATION_SLOT conduitslot  LOGICAL pgoutput EXPORT_SNAPSHOT
+benchi-postgres  | 2025-03-18 16:22:32.054 UTC [86] LOG:  0/19DCCF0 has been already streamed, forwarding to 0/19DCD28
+benchi-postgres  | 2025-03-18 16:22:32.054 UTC [86] STATEMENT:  START_REPLICATION SLOT conduitslot LOGICAL 0/19DCCF0 ("proto_version" '1', "publication_names" 'conduitpub')
+benchi-postgres  | 2025-03-18 16:22:32.055 UTC [86] LOG:  starting logical decoding for slot "conduitslot"
+benchi-postgres  | 2025-03-18 16:22:32.055 UTC [86] DETAIL:  Streaming transactions committing after 0/19DCD28, reading WAL from 0/19DCCF0.
+benchi-postgres  | 2025-03-18 16:22:32.055 UTC [86] STATEMENT:  START_REPLICATION SLOT conduitslot LOGICAL 0/19DCCF0 ("proto_version" '1', "publication_names" 'conduitpub')
+benchi-postgres  | 2025-03-18 16:22:32.055 UTC [86] LOG:  logical decoding found consistent point at 0/19DCCF0
+benchi-postgres  | 2025-03-18 16:22:32.055 UTC [86] DETAIL:  There are no running transactions.
+benchi-postgres  | 2025-03-18 16:22:32.055 UTC [86] STATEMENT:  START_REPLICATION SLOT conduitslot LOGICAL 0/19DCCF0 ("proto_version" '1', "publication_names" 'conduitpub')
+benchi-kafka     | [2025-03-18 16:22:33,278] INFO Sent auto-creation request for Set(destination-topic) to the active controller. (kafka.server.DefaultAutoTopicCreationManager)
+benchi-kafka     | [2025-03-18 16:22:33,466] INFO [ReplicaFetcherManager on broker 1] Removed fetcher for partitions Set(destination-topic-0) (kafka.server.ReplicaFetcherManager)
+benchi-kafka     | [2025-03-18 16:22:33,497] INFO [LogLoader partition=destination-topic-0, dir=/tmp/kafka-logs] Loading producer state till offset 0 with message format version 2 (kafka.log.UnifiedLog$)
+benchi-kafka     | [2025-03-18 16:22:33,499] INFO Created log for partition destination-topic-0 in /tmp/kafka-logs/destination-topic-0 with properties {} (kafka.log.LogManager)
+benchi-kafka     | [2025-03-18 16:22:33,500] INFO [Partition destination-topic-0 broker=1] No checkpointed highwatermark is found for partition destination-topic-0 (kafka.cluster.Partition)
+benchi-kafka     | [2025-03-18 16:22:33,502] INFO [Partition destination-topic-0 broker=1] Log loaded for partition destination-topic-0 with initial high watermark 0 (kafka.cluster.Partition)
+benchi-postgres  | 2025-03-18 16:24:33.361 UTC [86] LOG:  unexpected EOF on standby connection
+benchi-postgres  | 2025-03-18 16:24:33.361 UTC [86] STATEMENT:  START_REPLICATION SLOT conduitslot LOGICAL 0/19DCCF0 ("proto_version" '1', "publication_names" 'conduitpub')
+benchi-postgres  | 2025-03-18 16:24:33.530 UTC [1] LOG:  received fast shutdown request
+benchi-postgres  | 2025-03-18 16:24:33.531 UTC [1] LOG:  aborting any active transactions
+benchi-kafka     | [2025-03-18 16:24:33,531] INFO Terminating process due to signal SIGTERM (org.apache.kafka.common.utils.LoggingSignalHandler)
+benchi-postgres  | 2025-03-18 16:24:33.532 UTC [1] LOG:  background worker "logical replication launcher" (PID 69) exited with exit code 1
+benchi-postgres  | 2025-03-18 16:24:33.532 UTC [64] LOG:  shutting down
+benchi-postgres  | 2025-03-18 16:24:33.533 UTC [64] LOG:  checkpoint starting: shutdown immediate
+benchi-kafka     | [2025-03-18 16:24:33,541] INFO [BrokerServer id=1] Transition from STARTED to SHUTTING_DOWN (kafka.server.BrokerServer)
+benchi-kafka     | [2025-03-18 16:24:33,541] INFO [BrokerServer id=1] shutting down (kafka.server.BrokerServer)
+benchi-kafka     | [2025-03-18 16:24:33,547] INFO [BrokerLifecycleManager id=1] Beginning controlled shutdown. (kafka.server.BrokerLifecycleManager)
+benchi-postgres  | 2025-03-18 16:24:33.573 UTC [64] LOG:  checkpoint complete: wrote 3721 buffers (22.7%); 0 WAL file(s) added, 0 removed, 4 recycled; write=0.022 s, sync=0.012 s, total=0.041 s; sync files=33, longest=0.009 s, average=0.001 s; distance=58954 kB, estimate=58954 kB; lsn=0/536BA00, redo lsn=0/536BA00
+benchi-postgres  | 2025-03-18 16:24:33.575 UTC [1] LOG:  database system is shut down
+benchi-kafka     | [2025-03-18 16:24:33,595] INFO [BrokerLifecycleManager id=1] The broker is in PENDING_CONTROLLED_SHUTDOWN state, still waiting for the active controller. (kafka.server.BrokerLifecycleManager)
+benchi-kafka     | [2025-03-18 16:24:33,602] INFO [ReplicaFetcherManager on broker 1] Removed fetcher for partitions Set(destination-topic-0) (kafka.server.ReplicaFetcherManager)
+benchi-kafka     | [2025-03-18 16:24:33,602] INFO [ReplicaAlterLogDirsManager on broker 1] Removed fetcher for partitions Set(destination-topic-0) (kafka.server.ReplicaAlterLogDirsManager)
+benchi-kafka     | [2025-03-18 16:24:33,655] INFO [BrokerLifecycleManager id=1] The controller has asked us to exit controlled shutdown. (kafka.server.BrokerLifecycleManager)
+benchi-kafka     | [2025-03-18 16:24:33,655] INFO [BrokerLifecycleManager id=1] beginShutdown: shutting down event queue. (org.apache.kafka.queue.KafkaEventQueue)
+benchi-kafka     | [2025-03-18 16:24:33,657] INFO [BrokerLifecycleManager id=1] Transitioning from PENDING_CONTROLLED_SHUTDOWN to SHUTTING_DOWN. (kafka.server.BrokerLifecycleManager)
+benchi-kafka     | [2025-03-18 16:24:33,657] INFO [broker-1-to-controller-heartbeat-channel-manager]: Shutting down (kafka.server.NodeToControllerRequestThread)
+benchi-kafka     | [2025-03-18 16:24:33,658] INFO [broker-1-to-controller-heartbeat-channel-manager]: Stopped (kafka.server.NodeToControllerRequestThread)
+benchi-kafka     | [2025-03-18 16:24:33,658] INFO [broker-1-to-controller-heartbeat-channel-manager]: Shutdown completed (kafka.server.NodeToControllerRequestThread)
+benchi-kafka     | [2025-03-18 16:24:33,660] INFO [SocketServer listenerType=BROKER, nodeId=1] Stopping socket server request processors (kafka.network.SocketServer)
+benchi-kafka     | [2025-03-18 16:24:33,682] INFO Node to controller channel manager for heartbeat shutdown (kafka.server.NodeToControllerChannelManagerImpl)
+[Kbenchi-postgres exited with code 0
+benchi-kafka     | [2025-03-18 16:24:33,694] INFO [SocketServer listenerType=BROKER, nodeId=1] Stopped socket server request processors (kafka.network.SocketServer)
+benchi-kafka     | [2025-03-18 16:24:33,695] INFO [data-plane Kafka Request Handler on Broker 1], shutting down (kafka.server.KafkaRequestHandlerPool)
+benchi-kafka     | [2025-03-18 16:24:33,700] INFO [data-plane Kafka Request Handler on Broker 1], shut down completely (kafka.server.KafkaRequestHandlerPool)
+benchi-kafka     | [2025-03-18 16:24:33,700] INFO [ExpirationReaper-1-AlterAcls]: Shutting down (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+benchi-kafka     | [2025-03-18 16:24:33,702] INFO [ExpirationReaper-1-AlterAcls]: Stopped (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+benchi-kafka     | [2025-03-18 16:24:33,702] INFO [ExpirationReaper-1-AlterAcls]: Shutdown completed (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+benchi-kafka     | [2025-03-18 16:24:33,704] INFO [KafkaApi-1] Shutdown complete. (kafka.server.KafkaApis)
+benchi-kafka     | [2025-03-18 16:24:33,713] INFO [TransactionCoordinator id=1] Shutting down. (kafka.coordinator.transaction.TransactionCoordinator)
+benchi-kafka     | [2025-03-18 16:24:33,713] INFO [Transaction State Manager 1]: Shutdown complete (kafka.coordinator.transaction.TransactionStateManager)
+benchi-kafka     | [2025-03-18 16:24:33,713] INFO [TxnMarkerSenderThread-1]: Shutting down (kafka.coordinator.transaction.TransactionMarkerChannelManager)
+benchi-kafka     | [2025-03-18 16:24:33,713] INFO [TxnMarkerSenderThread-1]: Stopped (kafka.coordinator.transaction.TransactionMarkerChannelManager)
+benchi-kafka     | [2025-03-18 16:24:33,714] INFO [TxnMarkerSenderThread-1]: Shutdown completed (kafka.coordinator.transaction.TransactionMarkerChannelManager)
+benchi-kafka     | [2025-03-18 16:24:33,715] INFO [TransactionCoordinator id=1] Shutdown complete. (kafka.coordinator.transaction.TransactionCoordinator)
+benchi-kafka     | [2025-03-18 16:24:33,715] INFO [GroupCoordinator 1]: Shutting down. (kafka.coordinator.group.GroupCoordinator)
+benchi-kafka     | [2025-03-18 16:24:33,716] INFO [ExpirationReaper-1-Heartbeat]: Shutting down (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+benchi-kafka     | [2025-03-18 16:24:33,717] INFO [ExpirationReaper-1-Heartbeat]: Stopped (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+benchi-kafka     | [2025-03-18 16:24:33,717] INFO [ExpirationReaper-1-Heartbeat]: Shutdown completed (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+benchi-kafka     | [2025-03-18 16:24:33,718] INFO [ExpirationReaper-1-Rebalance]: Shutting down (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+benchi-kafka     | [2025-03-18 16:24:33,718] INFO [ExpirationReaper-1-Rebalance]: Stopped (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+benchi-kafka     | [2025-03-18 16:24:33,718] INFO [ExpirationReaper-1-Rebalance]: Shutdown completed (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+benchi-kafka     | [2025-03-18 16:24:33,719] INFO [GroupCoordinator 1]: Shutdown complete. (kafka.coordinator.group.GroupCoordinator)
+benchi-kafka     | [2025-03-18 16:24:33,719] INFO [AssignmentsManager id=1]KafkaEventQueue#close: shutting down event queue. (org.apache.kafka.queue.KafkaEventQueue)
+benchi-kafka     | [2025-03-18 16:24:33,720] INFO [AssignmentsManager id=1] shutting down. (org.apache.kafka.server.AssignmentsManager)
+benchi-kafka     | [2025-03-18 16:24:33,720] INFO [broker-1-to-controller-directory-assignments-channel-manager]: Shutting down (kafka.server.NodeToControllerRequestThread)
+benchi-kafka     | [2025-03-18 16:24:33,720] INFO [broker-1-to-controller-directory-assignments-channel-manager]: Stopped (kafka.server.NodeToControllerRequestThread)
+benchi-kafka     | [2025-03-18 16:24:33,720] INFO [broker-1-to-controller-directory-assignments-channel-manager]: Shutdown completed (kafka.server.NodeToControllerRequestThread)
+benchi-kafka     | [2025-03-18 16:24:33,722] INFO Node to controller channel manager for directory-assignments shutdown (kafka.server.NodeToControllerChannelManagerImpl)
+benchi-kafka     | [2025-03-18 16:24:33,722] INFO [AssignmentsManager id=1]closed event queue. (org.apache.kafka.queue.KafkaEventQueue)
+benchi-kafka     | [2025-03-18 16:24:33,722] INFO [ReplicaManager broker=1] Shutting down (kafka.server.ReplicaManager)
+benchi-kafka     | [2025-03-18 16:24:33,724] INFO [LogDirFailureHandler]: Shutting down (kafka.server.ReplicaManager$LogDirFailureHandler)
+benchi-kafka     | [2025-03-18 16:24:33,724] INFO [LogDirFailureHandler]: Stopped (kafka.server.ReplicaManager$LogDirFailureHandler)
+benchi-kafka     | [2025-03-18 16:24:33,724] INFO [LogDirFailureHandler]: Shutdown completed (kafka.server.ReplicaManager$LogDirFailureHandler)
+benchi-kafka     | [2025-03-18 16:24:33,724] INFO [ReplicaFetcherManager on broker 1] shutting down (kafka.server.ReplicaFetcherManager)
+benchi-kafka     | [2025-03-18 16:24:33,725] INFO [ReplicaFetcherManager on broker 1] shutdown completed (kafka.server.ReplicaFetcherManager)
+benchi-kafka     | [2025-03-18 16:24:33,725] INFO [ReplicaAlterLogDirsManager on broker 1] shutting down (kafka.server.ReplicaAlterLogDirsManager)
+benchi-kafka     | [2025-03-18 16:24:33,725] INFO [ReplicaAlterLogDirsManager on broker 1] shutdown completed (kafka.server.ReplicaAlterLogDirsManager)
+benchi-kafka     | [2025-03-18 16:24:33,725] INFO [ExpirationReaper-1-Fetch]: Shutting down (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+benchi-kafka     | [2025-03-18 16:24:33,726] INFO [ExpirationReaper-1-Fetch]: Stopped (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+benchi-kafka     | [2025-03-18 16:24:33,726] INFO [ExpirationReaper-1-Fetch]: Shutdown completed (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+benchi-kafka     | [2025-03-18 16:24:33,726] INFO [ExpirationReaper-1-RemoteFetch]: Shutting down (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+benchi-kafka     | [2025-03-18 16:24:33,727] INFO [ExpirationReaper-1-RemoteFetch]: Stopped (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+benchi-kafka     | [2025-03-18 16:24:33,727] INFO [ExpirationReaper-1-RemoteFetch]: Shutdown completed (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+benchi-kafka     | [2025-03-18 16:24:33,727] INFO [ExpirationReaper-1-Produce]: Shutting down (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+benchi-kafka     | [2025-03-18 16:24:33,728] INFO [ExpirationReaper-1-Produce]: Stopped (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+benchi-kafka     | [2025-03-18 16:24:33,728] INFO [ExpirationReaper-1-Produce]: Shutdown completed (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+benchi-kafka     | [2025-03-18 16:24:33,728] INFO [ExpirationReaper-1-DeleteRecords]: Shutting down (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+benchi-kafka     | [2025-03-18 16:24:33,728] INFO [ExpirationReaper-1-DeleteRecords]: Stopped (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+benchi-kafka     | [2025-03-18 16:24:33,728] INFO [ExpirationReaper-1-DeleteRecords]: Shutdown completed (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+benchi-kafka     | [2025-03-18 16:24:33,729] INFO [ExpirationReaper-1-ElectLeader]: Shutting down (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+benchi-kafka     | [2025-03-18 16:24:33,729] INFO [ExpirationReaper-1-ElectLeader]: Stopped (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+benchi-kafka     | [2025-03-18 16:24:33,729] INFO [ExpirationReaper-1-ElectLeader]: Shutdown completed (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+benchi-kafka     | [2025-03-18 16:24:33,733] INFO [AddPartitionsToTxnSenderThread-1]: Shutting down (kafka.server.AddPartitionsToTxnManager)
+benchi-kafka     | [2025-03-18 16:24:33,734] INFO [AddPartitionsToTxnSenderThread-1]: Stopped (kafka.server.AddPartitionsToTxnManager)
+benchi-kafka     | [2025-03-18 16:24:33,734] INFO [AddPartitionsToTxnSenderThread-1]: Shutdown completed (kafka.server.AddPartitionsToTxnManager)
+benchi-kafka     | [2025-03-18 16:24:33,735] INFO [ReplicaManager broker=1] Shut down completely (kafka.server.ReplicaManager)
+benchi-kafka     | [2025-03-18 16:24:33,735] INFO [broker-1-to-controller-alter-partition-channel-manager]: Shutting down (kafka.server.NodeToControllerRequestThread)
+benchi-kafka     | [2025-03-18 16:24:33,735] INFO [broker-1-to-controller-alter-partition-channel-manager]: Stopped (kafka.server.NodeToControllerRequestThread)
+benchi-kafka     | [2025-03-18 16:24:33,735] INFO [broker-1-to-controller-alter-partition-channel-manager]: Shutdown completed (kafka.server.NodeToControllerRequestThread)
+benchi-kafka     | [2025-03-18 16:24:33,735] INFO Node to controller channel manager for alter-partition shutdown (kafka.server.NodeToControllerChannelManagerImpl)
+benchi-kafka     | [2025-03-18 16:24:33,736] INFO [broker-1-to-controller-forwarding-channel-manager]: Shutting down (kafka.server.NodeToControllerRequestThread)
+benchi-kafka     | [2025-03-18 16:24:33,736] INFO [broker-1-to-controller-forwarding-channel-manager]: Stopped (kafka.server.NodeToControllerRequestThread)
+benchi-kafka     | [2025-03-18 16:24:33,736] INFO [broker-1-to-controller-forwarding-channel-manager]: Shutdown completed (kafka.server.NodeToControllerRequestThread)
+benchi-kafka     | [2025-03-18 16:24:33,737] INFO Node to controller channel manager for forwarding shutdown (kafka.server.NodeToControllerChannelManagerImpl)
+benchi-kafka     | [2025-03-18 16:24:33,737] INFO Shutting down. (kafka.log.LogManager)
+benchi-kafka     | [2025-03-18 16:24:33,738] INFO [kafka-log-cleaner-thread-0]: Shutting down (kafka.log.LogCleaner$CleanerThread)
+benchi-kafka     | [2025-03-18 16:24:33,739] INFO [kafka-log-cleaner-thread-0]: Stopped (kafka.log.LogCleaner$CleanerThread)
+benchi-kafka     | [2025-03-18 16:24:33,739] INFO [kafka-log-cleaner-thread-0]: Shutdown completed (kafka.log.LogCleaner$CleanerThread)
+benchi-kafka     | [2025-03-18 16:24:33,749] INFO [ProducerStateManager partition=destination-topic-0] Wrote producer snapshot at offset 400000 with 1 producer ids in 2 ms. (org.apache.kafka.storage.internals.log.ProducerStateManager)
+benchi-kafka     | [2025-03-18 16:24:33,784] INFO Shutdown complete. (kafka.log.LogManager)
+benchi-kafka     | [2025-03-18 16:24:33,784] INFO [broker-1-ThrottledChannelReaper-Fetch]: Shutting down (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+benchi-kafka     | [2025-03-18 16:24:33,786] INFO [broker-1-ThrottledChannelReaper-Fetch]: Stopped (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+benchi-kafka     | [2025-03-18 16:24:33,786] INFO [broker-1-ThrottledChannelReaper-Fetch]: Shutdown completed (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+benchi-kafka     | [2025-03-18 16:24:33,786] INFO [broker-1-ThrottledChannelReaper-Produce]: Shutting down (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+benchi-kafka     | [2025-03-18 16:24:33,787] INFO [broker-1-ThrottledChannelReaper-Produce]: Stopped (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+benchi-kafka     | [2025-03-18 16:24:33,787] INFO [broker-1-ThrottledChannelReaper-Produce]: Shutdown completed (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+benchi-kafka     | [2025-03-18 16:24:33,787] INFO [broker-1-ThrottledChannelReaper-Request]: Shutting down (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+benchi-kafka     | [2025-03-18 16:24:33,787] INFO [broker-1-ThrottledChannelReaper-Request]: Stopped (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+benchi-kafka     | [2025-03-18 16:24:33,787] INFO [broker-1-ThrottledChannelReaper-Request]: Shutdown completed (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+benchi-kafka     | [2025-03-18 16:24:33,787] INFO [broker-1-ThrottledChannelReaper-ControllerMutation]: Shutting down (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+benchi-kafka     | [2025-03-18 16:24:33,787] INFO [broker-1-ThrottledChannelReaper-ControllerMutation]: Stopped (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+benchi-kafka     | [2025-03-18 16:24:33,787] INFO [broker-1-ThrottledChannelReaper-ControllerMutation]: Shutdown completed (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+benchi-kafka     | [2025-03-18 16:24:33,788] INFO [SocketServer listenerType=BROKER, nodeId=1] Shutting down socket server (kafka.network.SocketServer)
+benchi-kafka     | [2025-03-18 16:24:33,795] INFO [SocketServer listenerType=BROKER, nodeId=1] Shutdown completed (kafka.network.SocketServer)
+benchi-kafka     | [2025-03-18 16:24:33,796] INFO Broker and topic stats closed (kafka.server.BrokerTopicStats)
+benchi-kafka     | [2025-03-18 16:24:33,796] INFO [BrokerLifecycleManager id=1] closed event queue. (org.apache.kafka.queue.KafkaEventQueue)
+benchi-kafka     | [2025-03-18 16:24:33,796] INFO [client-metrics-reaper]: Shutting down (org.apache.kafka.server.util.timer.SystemTimerReaper$Reaper)
+benchi-kafka     | [2025-03-18 16:24:33,797] INFO [client-metrics-reaper]: Stopped (org.apache.kafka.server.util.timer.SystemTimerReaper$Reaper)
+benchi-kafka     | [2025-03-18 16:24:33,797] INFO [client-metrics-reaper]: Shutdown completed (org.apache.kafka.server.util.timer.SystemTimerReaper$Reaper)
+benchi-kafka     | [2025-03-18 16:24:33,798] INFO [BrokerServer id=1] shut down completed (kafka.server.BrokerServer)
+benchi-kafka     | [2025-03-18 16:24:33,798] INFO [BrokerServer id=1] Transition from SHUTTING_DOWN to SHUTDOWN (kafka.server.BrokerServer)
+benchi-kafka     | [2025-03-18 16:24:33,804] INFO [ControllerServer id=1] shutting down (kafka.server.ControllerServer)
+benchi-kafka     | [2025-03-18 16:24:33,805] INFO [raft-expiration-reaper]: Shutting down (kafka.raft.TimingWheelExpirationService$ExpiredOperationReaper)
+benchi-kafka     | [2025-03-18 16:24:33,935] INFO [raft-expiration-reaper]: Stopped (kafka.raft.TimingWheelExpirationService$ExpiredOperationReaper)
+benchi-kafka     | [2025-03-18 16:24:33,935] INFO [raft-expiration-reaper]: Shutdown completed (kafka.raft.TimingWheelExpirationService$ExpiredOperationReaper)
+benchi-kafka     | [2025-03-18 16:24:33,936] INFO [kafka-1-raft-io-thread]: Shutting down (org.apache.kafka.raft.KafkaRaftClientDriver)
+benchi-kafka     | [2025-03-18 16:24:33,936] INFO [RaftManager id=1] Beginning graceful shutdown (org.apache.kafka.raft.KafkaRaftClient)
+benchi-kafka     | [2025-03-18 16:24:33,937] INFO [RaftManager id=1] Graceful shutdown completed (org.apache.kafka.raft.KafkaRaftClient)
+benchi-kafka     | [2025-03-18 16:24:33,937] INFO [RaftManager id=1] Completed graceful shutdown of RaftClient (org.apache.kafka.raft.KafkaRaftClientDriver)
+benchi-kafka     | [2025-03-18 16:24:33,938] INFO [kafka-1-raft-io-thread]: Stopped (org.apache.kafka.raft.KafkaRaftClientDriver)
+benchi-kafka     | [2025-03-18 16:24:33,938] INFO [kafka-1-raft-io-thread]: Shutdown completed (org.apache.kafka.raft.KafkaRaftClientDriver)
+benchi-kafka     | [2025-03-18 16:24:33,940] INFO [kafka-1-raft-outbound-request-thread]: Shutting down (org.apache.kafka.raft.KafkaNetworkChannel$SendThread)
+benchi-kafka     | [2025-03-18 16:24:33,940] INFO [kafka-1-raft-outbound-request-thread]: Stopped (org.apache.kafka.raft.KafkaNetworkChannel$SendThread)
+benchi-kafka     | [2025-03-18 16:24:33,940] INFO [kafka-1-raft-outbound-request-thread]: Shutdown completed (org.apache.kafka.raft.KafkaNetworkChannel$SendThread)
+benchi-kafka     | [2025-03-18 16:24:33,944] INFO [ProducerStateManager partition=__cluster_metadata-0] Wrote producer snapshot at offset 266 with 0 producer ids in 2 ms. (org.apache.kafka.storage.internals.log.ProducerStateManager)
+benchi-kafka     | [2025-03-18 16:24:33,945] INFO [ControllerRegistrationManager id=1 incarnation=gH5VaNaMRrOPpw5zSPEvhw] beginShutdown: shutting down event queue. (org.apache.kafka.queue.KafkaEventQueue)
+benchi-kafka     | [2025-03-18 16:24:33,946] INFO [ControllerRegistrationManager id=1 incarnation=gH5VaNaMRrOPpw5zSPEvhw] shutting down. (kafka.server.ControllerRegistrationManager)
+benchi-kafka     | [2025-03-18 16:24:33,946] INFO [controller-1-to-controller-registration-channel-manager]: Shutting down (kafka.server.NodeToControllerRequestThread)
+benchi-kafka     | [2025-03-18 16:24:33,946] INFO [controller-1-to-controller-registration-channel-manager]: Stopped (kafka.server.NodeToControllerRequestThread)
+benchi-kafka     | [2025-03-18 16:24:33,946] INFO [controller-1-to-controller-registration-channel-manager]: Shutdown completed (kafka.server.NodeToControllerRequestThread)
+benchi-kafka     | [2025-03-18 16:24:33,946] INFO Node to controller channel manager for registration shutdown (kafka.server.NodeToControllerChannelManagerImpl)
+benchi-kafka     | [2025-03-18 16:24:33,946] INFO [ControllerRegistrationManager id=1 incarnation=gH5VaNaMRrOPpw5zSPEvhw] closed event queue. (org.apache.kafka.queue.KafkaEventQueue)
+benchi-kafka     | [2025-03-18 16:24:33,947] INFO [controller-1-to-controller-registration-channel-manager]: Shutdown completed (kafka.server.NodeToControllerRequestThread)
+benchi-kafka     | [2025-03-18 16:24:33,947] WARN [NodeToControllerChannelManager id=1 name=registration] Attempting to close NetworkClient that has already been closed. (org.apache.kafka.clients.NetworkClient)
+benchi-kafka     | [2025-03-18 16:24:33,947] INFO Node to controller channel manager for registration shutdown (kafka.server.NodeToControllerChannelManagerImpl)
+benchi-kafka     | [2025-03-18 16:24:33,947] INFO [ControllerRegistrationManager id=1 incarnation=gH5VaNaMRrOPpw5zSPEvhw] closed event queue. (org.apache.kafka.queue.KafkaEventQueue)
+benchi-kafka     | [2025-03-18 16:24:33,948] INFO [SocketServer listenerType=CONTROLLER, nodeId=1] Stopping socket server request processors (kafka.network.SocketServer)
+benchi-kafka     | [2025-03-18 16:24:33,951] INFO [SocketServer listenerType=CONTROLLER, nodeId=1] Stopped socket server request processors (kafka.network.SocketServer)
+benchi-kafka     | [2025-03-18 16:24:33,952] INFO [QuorumController id=1] QuorumController#beginShutdown: shutting down event queue. (org.apache.kafka.queue.KafkaEventQueue)
+benchi-kafka     | [2025-03-18 16:24:33,952] INFO [SocketServer listenerType=CONTROLLER, nodeId=1] Shutting down socket server (kafka.network.SocketServer)
+benchi-kafka     | [2025-03-18 16:24:33,955] INFO [SocketServer listenerType=CONTROLLER, nodeId=1] Shutdown completed (kafka.network.SocketServer)
+benchi-kafka     | [2025-03-18 16:24:33,955] INFO [data-plane Kafka Request Handler on Broker 1], shutting down (kafka.server.KafkaRequestHandlerPool)
+benchi-kafka     | [2025-03-18 16:24:33,958] INFO [data-plane Kafka Request Handler on Broker 1], shut down completely (kafka.server.KafkaRequestHandlerPool)
+benchi-kafka     | [2025-03-18 16:24:33,959] INFO [ExpirationReaper-1-AlterAcls]: Shutting down (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+benchi-kafka     | [2025-03-18 16:24:33,959] INFO [ExpirationReaper-1-AlterAcls]: Stopped (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+benchi-kafka     | [2025-03-18 16:24:33,959] INFO [ExpirationReaper-1-AlterAcls]: Shutdown completed (kafka.server.DelayedOperationPurgatory$ExpiredOperationReaper)
+benchi-kafka     | [2025-03-18 16:24:33,962] INFO [controller-1-ThrottledChannelReaper-Fetch]: Shutting down (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+benchi-kafka     | [2025-03-18 16:24:33,962] INFO [controller-1-ThrottledChannelReaper-Fetch]: Stopped (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+benchi-kafka     | [2025-03-18 16:24:33,962] INFO [controller-1-ThrottledChannelReaper-Fetch]: Shutdown completed (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+benchi-kafka     | [2025-03-18 16:24:33,962] INFO [controller-1-ThrottledChannelReaper-Produce]: Shutting down (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+benchi-kafka     | [2025-03-18 16:24:33,962] INFO [controller-1-ThrottledChannelReaper-Produce]: Stopped (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+benchi-kafka     | [2025-03-18 16:24:33,962] INFO [controller-1-ThrottledChannelReaper-Produce]: Shutdown completed (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+benchi-kafka     | [2025-03-18 16:24:33,962] INFO [controller-1-ThrottledChannelReaper-Request]: Shutting down (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+benchi-kafka     | [2025-03-18 16:24:33,963] INFO [controller-1-ThrottledChannelReaper-Request]: Stopped (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+benchi-kafka     | [2025-03-18 16:24:33,963] INFO [controller-1-ThrottledChannelReaper-Request]: Shutdown completed (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+benchi-kafka     | [2025-03-18 16:24:33,963] INFO [controller-1-ThrottledChannelReaper-ControllerMutation]: Shutting down (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+benchi-kafka     | [2025-03-18 16:24:33,963] INFO [controller-1-ThrottledChannelReaper-ControllerMutation]: Stopped (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+benchi-kafka     | [2025-03-18 16:24:33,963] INFO [controller-1-ThrottledChannelReaper-ControllerMutation]: Shutdown completed (kafka.server.ClientQuotaManager$ThrottledChannelReaper)
+benchi-kafka     | [2025-03-18 16:24:33,963] INFO [QuorumController id=1] closed event queue. (org.apache.kafka.queue.KafkaEventQueue)
+benchi-kafka     | [2025-03-18 16:24:33,964] INFO [SharedServer id=1] Stopping SharedServer (kafka.server.SharedServer)
+benchi-kafka     | [2025-03-18 16:24:33,964] INFO [MetadataLoader id=1] beginShutdown: shutting down event queue. (org.apache.kafka.queue.KafkaEventQueue)
+benchi-kafka     | [2025-03-18 16:24:33,964] INFO [SnapshotGenerator id=1] beginShutdown: shutting down event queue. (org.apache.kafka.queue.KafkaEventQueue)
+benchi-kafka     | [2025-03-18 16:24:33,964] INFO [SnapshotGenerator id=1] closed event queue. (org.apache.kafka.queue.KafkaEventQueue)
+benchi-kafka     | [2025-03-18 16:24:33,965] INFO [MetadataLoader id=1] closed event queue. (org.apache.kafka.queue.KafkaEventQueue)
+benchi-kafka     | [2025-03-18 16:24:33,966] INFO [SnapshotGenerator id=1] closed event queue. (org.apache.kafka.queue.KafkaEventQueue)
+benchi-kafka     | [2025-03-18 16:24:33,967] INFO Metrics scheduler closed (org.apache.kafka.common.metrics.Metrics)
+benchi-kafka     | [2025-03-18 16:24:33,967] INFO Closing reporter org.apache.kafka.common.metrics.JmxReporter (org.apache.kafka.common.metrics.Metrics)
+benchi-kafka     | [2025-03-18 16:24:33,967] INFO Metrics reporters closed (org.apache.kafka.common.metrics.Metrics)
+benchi-kafka     | [2025-03-18 16:24:33,968] INFO App info kafka.server for 1 unregistered (org.apache.kafka.common.utils.AppInfoParser)
+benchi-kafka     | [2025-03-18 16:24:33,968] INFO App info kafka.server for 1 unregistered (org.apache.kafka.common.utils.AppInfoParser)
+[Kbenchi-kafka exited with code 143

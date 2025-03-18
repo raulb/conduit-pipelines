@@ -1,0 +1,116 @@
+infrastructure:
+  postgres:
+    compose: "../infra/compose-postgres.yml"
+  kafka:
+    compose: "../infra/compose-kafka.yml"
+
+tools:
+#  kafka-connect:
+#    compose: "../tools/compose-kafka-connect.yml"
+  conduit:
+    compose: "../tools/compose-conduit.yml"
+
+metrics:
+  conduit_metrics:
+    collector: conduit # type of the collector, one of: conduit, prometheus, kafka, docker
+    tools:
+      - conduit
+    settings:
+      url: http://localhost:8080/metrics
+      pipelines: [ "postgres-to-kafka" ]
+  kafka_metrics_for_conduit:
+    collector: kafka
+    tools:
+      - conduit
+    settings:
+      url: http://localhost:7071/metrics
+      topics: [ "destination-topic" ]
+#  kafka_metrics_for_kafka_connect:
+#    collector: kafka
+#    tools:
+#      - kafka-connect
+#    settings:
+#      url: http://localhost:7071/metrics
+#      topics: [ "kafkaconnect.test.users" ]
+  docker_metrics_for_conduit:
+    collector: docker
+    tools:
+      - conduit
+    settings:
+      containers:
+        - "benchi-conduit"
+#  docker_metrics_for_kafka_connect:
+#    collector: docker
+#    tools:
+#      - kafka-connect
+#    settings:
+#      containers:
+#        - "benchi-kafka-connect"
+
+
+tests:
+  - name: pg-to-kafka-cdc
+    duration: 2m
+
+    infrastructure:
+      postgres:
+        compose: "./postgres/compose-postgres.override.yml"
+
+    tools:
+      conduit:
+        compose: ./conduit/compose-conduit.override.yml
+
+    steps:
+      pre-infrastructure:
+      post-infrastructure:
+      pre-tool:
+      post-tool:
+        # TODO: have more granularity on start (if pipeline starts as stopped)
+        # then stop, insert data, etc...
+#        - name: "Conduit: Install tools"
+#          tools:
+#            - conduit
+#          container: "benchi-conduit"
+#          run: |-
+#            /scripts/install_tools.sh
+#
+#        - name: "Conduit: Set up CDC"
+#          tools:
+#            - conduit
+#          container: "benchi-conduit"
+#          run: |-
+#            /scripts/start_pipeline.sh && /scripts/stop_pipeline.sh
+#        - name: "Kafka Connect: Set up CDC"
+#          tools:
+#            - kafka-connect
+#          container: "benchi-kafka-connect"
+#          run: |-
+#            /scripts/create_stopped_pipeline.sh
+#
+#        - name: "Insert test data"
+#          container: "mongo1"
+#          run: |
+#            /scripts/insert_test_data.sh
+#
+#        - name: "Conduit: start pipeline"
+#          tools:
+#            - conduit
+#          container: "benchi-conduit"
+#          run: |-
+#            /scripts/start_pipeline.sh
+#
+#        - name: "KC: start pipeline"
+#          tools:
+#            - kafka-connect
+#          container: "benchi-kafka-connect"
+#          run: |-
+#            /scripts/start_cdc_pipeline.sh
+      pre-test:
+      during:
+        - name: "Insert data"
+          container: "benchi-postgres"
+          run: |-
+            /insert-data.sh
+      post-test:
+      pre-cleanup:
+      post-cleanup:

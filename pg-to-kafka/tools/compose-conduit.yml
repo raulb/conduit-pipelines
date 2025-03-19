@@ -8,8 +8,8 @@ services:
       - '8080:8080'
     environment:
       CONDUIT_LOG_FORMAT: json
-#    volumes:
-#      - ./conduit-scripts:/scripts
+    volumes:
+      - ./conduit-scripts:/scripts
 networks:
   benchi:
     external: true

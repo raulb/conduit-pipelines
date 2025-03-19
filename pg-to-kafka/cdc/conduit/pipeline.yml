@@ -1,7 +1,7 @@
 version: "2.2"
 pipelines:
     - id: postgres-to-kafka
-      status: running
+      status: stopped
       name: "postgres-to-kafka"
       description: Postgres to Kafka
       connectors:

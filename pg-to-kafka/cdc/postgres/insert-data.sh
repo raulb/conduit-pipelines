@@ -11,7 +11,7 @@ trap cleanup SIGINT
 batch_size=80000
 
 # Number of batches
-batches=5
+batches=200
 
 # Function to insert a batch of records
 insert_batch() {

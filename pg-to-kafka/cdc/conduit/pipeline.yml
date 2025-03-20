@@ -11,10 +11,10 @@ pipelines:
           settings:
             tables: employees
             url: postgresql://meroxauser:meroxapass@benchi-postgres:5432/meroxadb
-#            sdk.batch.size: 10000
-#            sdk.batch.delay: "1s"
-#            sdk.schema.extract.key.enabled: false
-#            sdk.schema.extract.payload.enabled: false
+            sdk.batch.size: 10000
+            sdk.batch.delay: "1s"
+            sdk.schema.extract.key.enabled: false
+            sdk.schema.extract.payload.enabled: false
         - id: kafka-destination
           type: destination
           plugin: builtin:kafka

@@ -4,16 +4,18 @@ This repository will contain some Conduit Pipelines that will be used to easily 
 
 ## Postgres -> Kafka
 
-**Test data**
+### Using Benchi
 
-- 5 batches of 80k records each => 400000 records
+Having installed [`benchi`](https://github.com/conduitio/benchi) >= 0.3 is required.
+
+```bash
+go install github.com/conduitio/benchi/cmd/benchi@latest
+```
+
+#### CDC
 
 ```
-meroxadb=# SELECT pg_size_pretty(pg_total_relation_size('employees')) AS size;
- size  
--------
- 29 MB
-(1 row)
+make benchi-pg-to-kafka-cdc
 ```
 
 ### Conduit
@@ -27,8 +29,6 @@ meroxadb=# SELECT pg_size_pretty(pg_total_relation_size('employees')) AS size;
 1. Insert data `make insert-data`
 1. Start Conduit `make start-conduit`
 1. Access control center: `make open-control-center`
-
-**Results:**
 
 #### CDC
 
@@ -50,16 +50,12 @@ meroxadb=# SELECT pg_size_pretty(pg_total_relation_size('employees')) AS size;
 1. Deploy connector: `make deploy-source-connector`
 1. Access control center: `make open-control-center`
 
-**Results:**
-
 #### CDC
 
 1. `make setup`
 1. Deploy connector: `make deploy-source-connector`
 1. Insert data: `make insert-data`
 1. Access control center: `make open-control-center`
-
-**Results:**
 
 ## Kafka -> Snowflake
 

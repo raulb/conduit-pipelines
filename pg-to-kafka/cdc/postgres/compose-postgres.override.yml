@@ -1,0 +1,5 @@
+services:
+  benchi-postgres:
+    volumes:
+      - "../cdc/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql"
+      - "../cdc/postgres/insert-data.sh:/insert-data.sh"

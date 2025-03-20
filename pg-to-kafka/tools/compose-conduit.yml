@@ -1,0 +1,14 @@
+services:
+  benchi-conduit:
+    image: 'ghcr.io/conduitio/conduit:v0.13.3'
+    container_name: benchi-conduit
+    networks:
+      - benchi
+    ports:
+      - '8080:8080'
+    volumes:
+      - ./conduit-scripts:/scripts
+      - ./conduit.yaml:/app/conduit.yaml
+networks:
+  benchi:
+    external: true

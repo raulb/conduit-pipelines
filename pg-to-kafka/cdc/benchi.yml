@@ -31,7 +31,7 @@ metrics:
       - kafka-connect
     settings:
       url: http://localhost:7071/metrics
-      topics: [ "kafkaconnect.employees" ]
+      topics: [ "kafkaconnect.public.employees" ]
   docker_metrics_for_conduit:
     collector: docker
     tools:

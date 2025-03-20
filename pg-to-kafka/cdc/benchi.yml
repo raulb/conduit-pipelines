@@ -18,17 +18,8 @@ metrics:
     settings:
       url: http://localhost:8080/metrics
       pipelines: [ "postgres-to-kafka" ]
-  kafka_metrics_for_conduit:
-    collector: kafka
-    tools:
-      - conduit
-    settings:
-      url: http://localhost:7071/metrics
-      topics: [ "destination-topic" ]
-  kafka_metrics_for_kafka_connect:
-    collector: kafka
-    tools:
-      - kafka-connect
+  kafka_metrics:
+    collector: kafka      
     settings:
       url: http://localhost:7071/metrics
       topics: [ "kafkaconnect.public.employees" ]

@@ -16,10 +16,30 @@ import (
 )
 
 // Helper function to read records from the source connector
-func readRecords(ctx context.Context, src sdk.Source) (int, error) {
+func readRecords(ctx context.Context, src sdk.Source, expectedRecords int) (int, error) {
 	recordCount := 0
+	// Create a timeout context to ensure we don't run indefinitely
+	readTimeout := 30 * time.Second
+	timeoutCtx, cancel := context.WithTimeout(ctx, readTimeout)
+	defer cancel()
+
 	for {
-		record, err := src.Read(ctx)
+		// Check if we've read all expected records
+		if recordCount >= expectedRecords {
+			log.Printf("Read all %d expected records, stopping", expectedRecords)
+			return recordCount, nil
+		}
+
+		// Check if the timeout has been reached
+		select {
+		case <-timeoutCtx.Done():
+			log.Printf("Timeout reached after reading %d records", recordCount)
+			return recordCount, nil
+		default:
+			// Continue reading
+		}
+
+		record, err := src.Read(timeoutCtx)
 		if err != nil {
 			if errors.Is(sdk.ErrBackoffRetry, err) {
 				log.Println("Backing off, waiting for more records...")
@@ -46,13 +66,13 @@ func main() {
 
 	cfg := config.Config{
 		"tables":                             "employees",
-		"url":                                "postgresql://meroxauser:meroxapass@test-pg-connector:5432/meroxadb",
+		"url":                                "postgresql://meroxauser:meroxapass@localhost:5432/meroxadb",
 		"cdcMode":                            "logrepl",
 		"logrepl.slotName":                   "conduit_slot",
 		"logrepl.publicationName":            "conduit_pub",
 		"logrepl.autoCleanup":                "true",
 		"logrepl.withAvroSchema":             "false",
-		"snapshotMode":                       "never",
+		"snapshotMode":                       "initial",  // Changed from "never" to "initial" to capture existing data
 		"sdk.batch.size":                     "10000",
 		"sdk.batch.delay":                    "0s",
 		"sdk.schema.extract.key.enabled":     "false",
@@ -106,7 +126,14 @@ func main() {
 	log.Println("Starting to read records...")
 	startTime := time.Now()
 
-	recordCount, err := readRecords(ctx, src)
+	// Try to convert to expected number for validation
+	expectedRecords, convErr := strconv.Atoi(recordsToInsert)
+	if convErr != nil {
+		log.Printf("Warning: Could not convert record count '%s' to integer: %v", recordsToInsert, convErr)
+		expectedRecords = 1000 // Default to 1000 if conversion fails
+	}
+
+	recordCount, err := readRecords(ctx, src, expectedRecords)
 	if err != nil {
 		log.Fatalf("Error reading records: %v", err)
 	}
@@ -121,9 +148,8 @@ func main() {
 	log.Printf("- Total read duration: %v", duration)
 	log.Printf("- Read rate: %.2f records/second", recordsPerSecond)
 
-	// Try to convert to expected number for validation
-	expectedRecords, convErr := strconv.Atoi(recordsToInsert)
-	if convErr == nil {
+	// Validate the number of records read against expected
+	if recordCount != expectedRecords {
 		if recordCount != expectedRecords {
 			log.Printf("Warning: Expected to read %d records, but actually read %d",
 				expectedRecords, recordCount)

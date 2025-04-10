@@ -17,6 +17,7 @@
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 . "$SCRIPT_DIR/common.sh"
 
+# Function to output to stderr
 echoerr() { echo "$@" 1>&2; }
 
 cleanup() {
@@ -35,11 +36,17 @@ fi
 # Record start time
 start_time=$(date +%s)
 echo "Inserting $TOTAL_RECORDS records..."
-psql -U meroxauser -d meroxadb -c "
+docker exec test-pg-connector psql -U meroxauser -d meroxadb -c "
 INSERT INTO employees (name, email, full_time, position, hire_date, salary, updated_at, created_at)
 SELECT 'John Doe', 'john.doe@example.com', true, 'Software Engineer', CURRENT_DATE, 60000.00, NOW(), NOW()
 FROM generate_series(1, $TOTAL_RECORDS);
 "
+
+# Check if the command was successful
+if [ $? -ne 0 ]; then
+  echoerr "Error: Failed to insert records into database."
+  exit 1
+fi
 
 # Record end time
 end_time=$(date +%s)

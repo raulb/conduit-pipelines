@@ -44,7 +44,7 @@ func main() {
 	}
 	defer src.Teardown(ctx)
 
-	// read first record (?)
+	// start CDC
 	rec, err := src.Read(ctx)
 	if errors.Is(err, sdk.ErrBackoffRetry) {
 		fmt.Println("record not available")
@@ -56,7 +56,7 @@ func main() {
 
 	// Execute the script to insert records
 	// The script should take a command line argument for the number of records to insert
-	recordsToInsert := "100000" // Default to 1000 records
+	recordsToInsert := "20000000" // Default to 1000 records
 	if len(os.Args) > 1 {
 		recordsToInsert = os.Args[1]
 	}

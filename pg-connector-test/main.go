@@ -26,7 +26,7 @@ func main() {
 		"logrepl.publicationName":            "conduit_pub",
 		"logrepl.autoCleanup":                "true",
 		"logrepl.withAvroSchema":             "false",
-		"snapshotMode":                       "initial", // Changed from "never" to "initial" to capture existing data
+		"snapshotMode":                       "initial",
 		"sdk.batch.size":                     "10000",
 		"sdk.batch.delay":                    "0s",
 		"sdk.schema.extract.key.enabled":     "false",

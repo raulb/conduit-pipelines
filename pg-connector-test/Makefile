@@ -2,7 +2,7 @@
 
 # Variables
 SERVICE_NAME = test-pg-connector
-DEFAULT_RECORDS = 1000
+DEFAULT_RECORDS = 10000
 DB_USER = meroxauser
 DB_NAME = meroxadb
 DB_HOST = localhost

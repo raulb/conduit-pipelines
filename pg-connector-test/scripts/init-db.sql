@@ -1,6 +1,3 @@
--- Enable logical replication on this database
-ALTER SYSTEM SET wal_level = logical;
-
 -- Create the employees table
 CREATE TABLE IF NOT EXISTS employees (
     id SERIAL PRIMARY KEY,
@@ -40,11 +37,4 @@ BEGIN
     END IF;
 END $$;
 
--- Add some initial data to test with
-INSERT INTO employees (name, email, department, salary, hire_date)
-VALUES 
-    ('John Doe', 'john.doe@example.com', 'Engineering', 85000.00, '2023-01-15'),
-    ('Jane Smith', 'jane.smith@example.com', 'Marketing', 75000.00, '2023-02-20'),
-    ('Bob Johnson', 'bob.johnson@example.com', 'Finance', 90000.00, '2023-03-10')
-ON CONFLICT (email) DO NOTHING;
 
